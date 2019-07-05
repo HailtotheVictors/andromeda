@@ -1,0 +1,10 @@
+{
+  "name": "Andromeda",
+  "short_name": "Andromeda",
+  "theme_color": "#6aabeb",
+  "background_color": "#cccccc",
+  "display": "standalone",
+  "Scope": "//",
+  "start_url": "index.html",
+  "splash_pages": null
+}

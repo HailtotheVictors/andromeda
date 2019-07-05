@@ -6,5 +6,12 @@
   "display": "standalone",
   "Scope": "//",
   "start_url": "index.html",
+  "icons": [
+    {
+      "src": "/Andromeda_l_w_c.png",
+      "sizes": "215x215",
+      "type": "image/png"
+    }
+  ],
   "splash_pages": null
 }

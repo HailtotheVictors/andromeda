@@ -5,7 +5,7 @@
   "background_color": "#cccccc",
   "display": "standalone",
   "Scope": "/andromeda",
-  "start_url": "/index.html",
+  "start_url": "/andromeda/index.html",
   "icons": [
     {
       "src": "icons/icon-72x72.png",

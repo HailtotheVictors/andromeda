@@ -13,37 +13,24 @@
 }
   </script>
   <link rel="manifest" href="https://hailtothevictors.github.io/andromeda/manifest.json">
+  <script>
+    var songList = ["Bad_Liar","Blossom","Bones","Clocks","Cocoon","Cold_Blue_Rain","Dirty_Paws"
+                   ,"Fairytale","Flashed_Junk_Mind","Hey_Brother","Ho_Hey","Hold_Back_the_River
+                   ,"I_Need_a_Dollar","Little_Talks","Machine","Monster","Mountain_Sound"
+                   ,"Natural","Only","Ophelia","Paradise","Pompeii","Renegades","Riptide"
+                   ,"Stolen_Dance","Stolen_Dance_Flic_Flac","Stubborn_Love","The_Nights"
+                   ,"Viva_La_Vida","Waiting_for_Love","Walking_The_Wire","Warriors","Wish_I_Knew_You"];
+    
+    function getNumber() {
+     var songNum = songList.length;
+     var newNum = Math.floor((Math.random() * songNum));
+     var songId = songList[newNum];
+     document.getElementById("masterAudio").src = "/andromeda/AndromedaX/" + songId + ".mp3";
+     document.getElementById("masterAudio").play();
+    }
+  </script>
 </head>
 
 <h1>Hello!</h1>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Bad_Liar.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Blossom.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Bones.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Clocks.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Cocoon.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Cold_Blue_Rain.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Dirty_Paws.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Fairytale.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Flashed_Junk_Mind.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Hey_Brother.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Ho_Hey.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Hold_Back_the_River.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/I_Need_a_Dollar.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Little_Talks.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Machine.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Natural.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Only.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Ophelia.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Paradise.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Pompeii.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Renegades.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Riptide.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Stolen_Dance.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Stolen_Dance_Flic_Flac.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Stubborn_Love.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/The_Nights.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Viva_La_Vida.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Waiting_for_Love.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Walking_The_Wire.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Warriors.mp3" type="audio/mp3"></audio>
-<audio preload="metadata" controls><source src="/andromeda/AndromedaX/Wish_I_Knew_You.mp3" type="audio/mp3"></audio>
+<button onclick="getNumber()">X</button>
+<audio  id="masterAudio" style="display: none;" controls><source src="/andromeda/AndromedaX/Bad_Liar.mp3" type="audio/mp3"></audio>

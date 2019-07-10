@@ -1,0 +1,202 @@
+#univ {
+ height: 100vh;
+ width: 100vw;
+ background-color: #312;
+ position: absolute;
+ top: 0;
+ left: 0;
+}
+.rel {
+ position: relative;
+ width: 100%;
+ height: 100%;
+}
+#forehead {
+ height: 90px;
+ width: 100%;
+ background-color: #333;
+}
+#content {
+ height: calc(100vh - 180px);
+ width: 100%;
+ background-color: #555;
+ position: absolute;
+ top: 90px;
+ display: flex;
+}
+#bottom {
+ height: 90px;
+ width: 100%;
+ background-color: #333;
+ position: absolute;
+ bottom: 0;
+}
+#albumCont {
+ height: calc(100vh - 180px);
+ width: calc(100vh - 180px);
+}
+#desCont { 
+ height: calc(100vh - 180px);
+ width: calc(100vw - (100vh - 180px));
+}
+#selCont {
+ height: 100%;
+ width: 100%;
+ display: none;
+ overflow-y: scroll;
+}
+#selCont::-webkit-scrollbar { width: 10px; }
+#selCont::-webkit-scrollbar-track { background: #555;  }
+#selCont::-webkit-scrollbar-thumb { background: #888; }
+#lyrCont {
+ height: 100%;
+ width: 100%;
+ display: none;
+}
+#songDes {
+ height: 100%;
+ width: 100%;
+}
+#albumPhy {
+ height: calc(0.9 * (100vh - 180px));
+ width: calc(0.9 * (100vh - 180px));
+ padding: calc(0.05 * (100vh - 180px));
+ border-radius: 10%;
+}
+.large {
+ font-family: 'Roboto', sans-serif;
+ color: #eee;
+ font-weight: bold;
+ font-size: 60px;
+}
+.medium {
+ font-family: 'Roboto', sans-serif;
+ color: #ddd;
+ font-weight: bold;
+ font-size: 32px;
+}
+#butCont {
+ width: auto;
+ height: auto;
+ min-height: 30px;
+ display: flex;
+}
+.secondCont {
+ width: auto;
+ height: auto;
+ min-height: 40px;
+}
+.sel {
+ width: 100%;
+ height: 100px;
+ display: flex;
+}
+.sel:hover { cursor: pointer; }
+.s1 { background-image: linear-gradient(to right,#7373df,#6aabeb); }
+.s2 { background-color: #666; }
+.s1:hover { background-image: linear-gradient(to right,#8383ef,#7abbfb); }
+.s2:hover { background-color: #777; }
+.miniAlb {
+ height: 100px;
+ width: 100px;
+}
+.mini {
+ height: 90px;
+ width: 90px;
+ padding: 5px;
+ border-radius: 12%;
+}
+.small {
+ font-family: 'Roboto', sans-serif;
+ color: #eee;
+ font-size: 32px;
+}
+.tiny {
+ font-family: 'Roboto', sans-serif;
+ color: #ddd;
+ font-size: 24px;
+}
+.small:hover, .tiny:hover { cursor: pointer; }
+.miniCont {
+ width: calc(100% - 100px);
+ height: 100px;
+}
+#slider {
+ -webkit-appearance: none;
+ width: 90%;
+ display: block;
+ margin: auto;
+ height: 16px;
+ background-image: linear-gradient(to right,#6aabeb,#7373df,#b57afb);
+ outline: none;
+ border-radius: 100px;
+}
+#slider::-webkit-slider-thumb {
+ -webkit-appearance: none;
+ appearance: none;
+ width: 30px;
+ height: 30px;
+ background: #eee;
+ border-radius: 50%;
+}
+#slider::-moz-range-thumb {
+ width: 30px;
+ height: 30px;
+ background: #eee;
+ border-radius: 50%;
+}
+span:hover { cursor: default; }
+.canc { padding-top: 12px; }
+.ico {
+ height: 40px;
+ width: 40px;
+ padding: 10px;
+ background-color: #7373df;
+ margin-left: 15px;
+ border-radius: 25%;
+}
+.ico:hover { background-color: #6363cf; }
+.b1 { background-color: #6aabeb; }
+.b1:hover { background-color: #5a9bdb; }
+.ico:hover { cursor: pointer; }
+.ico:focus { outline: none; }
+.xBut {
+ border-radius: 50%;
+ position: fixed;
+ bottom: 110px;
+ right: 20px;
+ z-index: 6;
+}
+#logo {
+ height: 80px;
+ width: auto;
+ padding: 5px;
+}
+#pad1 { height: 100px; width: 100%; }
+.h:hover { cursor: default; }
+
+@media only screen and (max-width: 1000px) {
+ #content {
+  height: calc(100vh - 140px);
+  top: 60px;
+  display: block;
+ }
+ #albumCont { width: 100%; height: 40%; }
+ #desCont { height: 60%; width: 100%; }
+ #forehead { height: 60px; width: 100%; }
+ #logo { height: 50px; width: auto; padding: 5px; display: block; margin: auto; }
+ #albumPhy {
+  height: calc(0.36 * (100vh - 140px));
+  width: calc(0.36 * (100vh - 140px));
+  padding: calc(0.02 * (100vh - 140px));
+  display: block;
+  margin: auto;
+ }
+ #songDes { text-align: center; content-align: center; }
+ #pad1 { display: none; }
+ #butCont { margin: auto; display: block; }
+ .b2 { margin-left: 0; }
+ .large { font-size: 48px; }
+ .medium { font-size: 32px; }
+ .h { margin-left: 10px; }
+}

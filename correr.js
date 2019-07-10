@@ -122,11 +122,10 @@ setInterval(function(){
 
 
 
-$(document).ready(function(){
- $("#id").click(function() {
-
- });
-});
+var aud = document.getElementById("masterAudio");
+aud.onended = function() {
+   randomSong()
+};
 
 var songInfo = [];
 songInfo[0] = ["Bad_Liar","Bad Liar","Imagine Dragons | [Single] (2018)","/andromeda/albums/Bad_Liar.jqg"];

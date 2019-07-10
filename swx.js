@@ -5,7 +5,14 @@ const RUNTIME = 'runtime';
 const PRECACHE_URLS = [
   '/andromeda/index.html',
   '/andromeda/main.css',
-  '/andromeda/correr.js'
+  '/andromeda/correr.js',
+  '/andromeda/assets/rewind.png',
+  '/andromeda/assets/play.png',
+  '/andromeda/assets/fast-forward.png',
+  '/andromeda/assets/restart.png',
+  '/andromeda/assets/menu.png',
+  '/andromeda/assets/music.png',
+  '/andromeda/assets/delete-sign.png'
 ];
 
 // The install handler takes care of precaching the resources we always need.

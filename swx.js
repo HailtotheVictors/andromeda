@@ -19,7 +19,8 @@ const PRECACHE_URLS = [
   '/andromeda/AndromedaX/Stolen_Dance.mp3',
   '/andromeda/AndromedaX/Flashed_Junk_Mind.mp3',
   '/andromeda/AndromedaX/Blossom.mp3',
-  '/andromeda/AndromedaX/Cocoon.mp3'
+  '/andromeda/AndromedaX/Cocoon.mp3',
+  '/andromeda/manifest.json'
 ];
 
 // The install handler takes care of precaching the resources we always need.

@@ -15,33 +15,101 @@
 }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link rel="shortcut icon" href="https://playandromeda.weebly.com/uploads/1/1/5/0/115052431/andromeda-i-c_orig.png">
+  <title>Andromeda</title>
   <link rel="manifest" href="https://hailtothevictors.github.io/andromeda/manifest.json">
-  <script>
-    var songList = ["Bad_Liar","Blossom","Bones","Clocks","Cocoon","Cold_Blue_Rain","Dirty_Paws"
-                   ,"Fairytale","Flashed_Junk_Mind","Hey_Brother","Ho_Hey","Hold_Back_the_River"
-                   ,"I_Need_a_Dollar","Little_Talks","Machine","Monster","Mountain_Sound"
-                   ,"Natural","Only","Ophelia","Paradise","Pompeii","Renegades","Riptide"
-                   ,"Stolen_Dance","Stolen_Dance_Flic_Flac","Stubborn_Love","The_Nights"
-                   ,"Viva_La_Vida","Waiting_for_Love","Walking_The_Wire","Warriors","Wish_I_Knew_You"];
-    
-    function getNumber() {
-     var songNum = songList.length;
-     var newNum = Math.floor((Math.random() * songNum));
-     var songId = songList[newNum];
-     document.getElementById("masterAudio").src = "/andromeda/AndromedaX/" + songId + ".mp3";
-     document.getElementById("masterAudio").play();
-    }
-  </script>
 </head>
 
-<body>
-<div style="position: absolute; top: 0; left: 0; height: 100vh; width: 100vw; background-color: #312;"><div style="position: relative">
- <div style="height: 80px; width: 100%; background-color: #333; position: absolute; top: 0;">
-  <img src="/andromeda/andro_assets/Andromeda_l_w_c.png" style="height: 70px; width: auto; padding: 5px;"> 
+<body onload="randomSong()">
+
+<div id="univ">
+ <div id="forehead">
+  <img src="https://hailtothevictors.github.io/andromeda/andro_assets/Andromeda_l_w_c.png" id="logo">
  </div>
- <button onclick="getNumber()">X</button>
- <audio  id="masterAudio" style="display: none;" controls><source src="/andromeda/AndromedaX/Bad_Liar.mp3" type="audio/mp3"></audio>
-</div></div>
+ <div id="content">
+  <div id="albumCont">
+   <img id="albumPhy" src="https://playandromeda.weebly.com/uploads/1/1/5/0/115052431/andromeda-i-c_orig.png">
+  </div> <!-- /#albumCont -->
+  <div id="desCont">
+
+   <div id="songDes">
+    <div id="pad1"></div>
+    <span class="large" id="songName">Andromeda</span><br>
+    <span class="medium" id="songX">Loading...</span>
+    <div style="height: 20px; width: 100%"></div>
+    <div id="butCont">
+     <div class="secondCont">
+      <img class="ico" style="margin-left: 0;" onclick="prevSong()" src="https://img.icons8.com/material/48/000000/rewind.png">
+      <img class="ico" onclick="playPause()" id="pp" src="https://img.icons8.com/material/48/000000/pause.png">
+      <img class="ico" onclick="randomSong()" src="https://img.icons8.com/material/48/000000/fast-forward.png">
+     </div>
+     <div class="secondCont">
+      <img class="ico b1 b2" onclick="rewind()" src="https://img.icons8.com/material/48/000000/restart.png">
+      <img class="ico b1" onclick="toggleLyr()" src="https://img.icons8.com/material/48/000000/music.png">
+      <img class="ico b1" onclick="toggleSel()" src="https://img.icons8.com/material/48/000000/menu.png">
+     </div>
+    </div>
+   </div> <!-- /#songDes -->
+
+   <div id="selCont"><div class="rel">
+
+    <div class="sel s1" onclick="specSong(0)">
+     <div class="miniAlb"><img class="mini" src="https://pbs.twimg.com/media/DrRsHQUU4AAX3fq.jpg"></div>
+     <div class="miniCont"><span class="small">Bad Liar</span><br><span class="tiny">Imagine Dragons</span></div>
+    </div>
+    <div class="sel s2" onclick="specSong(1)">
+     <div class="miniAlb"><img class="mini" src="https://www.indieisnotagenre.com/wp-content/uploads/milky-chance-blossom-artwork.jpeg"></div>
+     <div class="miniCont"><span class="small">Blossom</span><br><span class="tiny">Milky Chance</span></div>
+    </div>
+    <div class="sel s1" onclick="specSong(2)">
+     <div class="miniAlb"><img class="mini" src="https://pbs.twimg.com/media/DyamvYYWwAU2SFs.jpg"></div>
+     <div class="miniCont"><span class="small">Bones</span><br><span class="tiny">Galantis ft. OneRepublic</span></div>
+    </div>
+    <div class="sel s2" onclick="specSong(3)">
+     <div class="miniAlb"><img class="mini" src="https://lastfm-img2.akamaized.net/i/u/ar0/5f52a67d37c04621b416e685338ef231.jpg"></div>
+     <div class="miniCont"><span class="small">Clocks</span><br><span class="tiny">Coldplay</span></div>
+    </div>
+    <div class="sel s1" onclick="specSong(4)">
+     <div class="miniAlb"><img class="mini" src="http://sportplaylists.com/wp-content/uploads/2016/11/Cocoon-Single.jpg"></div>
+     <div class="miniCont"><span class="small">Cocoon</span><br><span class="tiny">Milky Chance</span></div>
+    </div>
+    <div class="sel s2" onclick="specSong(5)">
+     <div class="miniAlb"><img class="mini" src="https://www.indieisnotagenre.com/wp-content/uploads/milky-chance-blossom-artwork.jpeg"></div>
+     <div class="miniCont"><span class="small">Cold Blue Rain</span><br><span class="tiny">Milky Chance</span></div>
+    </div>
+    <div class="sel s1" onclick="specSong(6)">
+     <div class="miniAlb"><img class="mini" src="https://pbs.twimg.com/media/Di63GSXWwAEoU7o.jpg"></div>
+     <div class="miniCont"><span class="small">Fairytale</span><br><span class="tiny">Milky Chance</span></div>
+    </div>
+    <div class="sel s2" onclick="specSong(7)">
+     <div class="miniAlb"><img class="mini" src="https://pbs.twimg.com/media/Di63GSXWwAEoU7o.jpg"></div>
+     <div class="miniCont"><span class="small">Flashed Junk Mind</span><br><span class="tiny">Milky Chance</span></div>
+    </div>
+
+    <img class="ico xBut" onclick="toggleSel()" src="https://img.icons8.com/material/48/000000/delete-sign.png">
+   </div></div>
+
+   <div id="lyrCont">
+    <div style="height: 5%; width: 100%;"></div>
+    <span class="medium h" style="color: #777;" id="song_n2">-</span><br>
+    <span class="medium canc h" style="color: #999;" id="song_n1">-</span><br>
+    <span class="medium canc h" style="color: #eee;" id="song">-</span><br>
+    <span class="medium canc h" style="color: #999;" id="song_p1">-</span><br>
+    <span class="medium canc h" style="color: #777;" id="song_p2">-</span>
+
+    <img class="ico xBut" onclick="toggleLyr()" src="https://img.icons8.com/material/48/000000/delete-sign.png">
+   </div>
+
+  </div> <!-- /#desCont -->
+ </div> <!-- /#content -->
+ <div id="bottom">
+  <div style="height: 38px; width: 100%"></div>
+  <input type="range" min="0" max="100" value="0" id="slider">
+ </div>
+</div>
+
+<audio id="masterAudio" style="display: none;" controls=""><source src="/andromeda/AndromedaX/Bad_Liar.mp3" type="audio/mp3"></audio>
+
 </body>
 </html>

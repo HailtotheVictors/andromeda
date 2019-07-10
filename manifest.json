@@ -1,7 +1,7 @@
 {
   "name": "Andromeda",
   "short_name": "Andromeda",
-  "theme_color": "#6aabeb",
+  "theme_color": "#333",
   "background_color": "#cccccc",
   "display": "standalone",
   "Scope": "/andromeda",

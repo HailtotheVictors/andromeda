@@ -277,4 +277,7 @@ setInterval(function(){
  var percent = now / dura * 100;
  var per = percent.toString();
  document.getElementById("slider").value = percent;
+ if (percent == 100) {
+  randomSong()
+ }
 }, 50);

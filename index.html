@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
   <script>
    if ('serviceWorker' in navigator) {
@@ -28,11 +28,11 @@
 
 <div id="univ">
  <div id="forehead">
-  <img src="https://hailtothevictors.github.io/andromeda/andro_assets/Andromeda_l_w_c.png" id="logo">
+  <img alt="Andromeda Logo" src="https://hailtothevictors.github.io/andromeda/andro_assets/Andromeda_l_w_c.png" id="logo">
  </div>
  <div id="content">
   <div id="albumCont">
-   <img id="albumPhy" src="https://playandromeda.weebly.com/uploads/1/1/5/0/115052431/andromeda-i-c_orig.png">
+   <img alt="Album Cover" id="albumPhy" src="https://playandromeda.weebly.com/uploads/1/1/5/0/115052431/andromeda-i-c_orig.png">
   </div> <!-- /#albumCont -->
   <div id="desCont">
 
@@ -43,14 +43,14 @@
     <div style="height: 20px; width: 100%"></div>
     <div id="butCont">
      <div class="secondCont">
-      <img class="ico" style="margin-left: 0;" onclick="prevSong()" src="/andromeda/assets/rewind.png">
-      <img class="ico" onclick="playPause()" id="pp" src="/andromeda/assets/pause.png">
-      <img class="ico" onclick="randomSong()" src="/andromeda/assets/fast-forward.png">
+      <img alt="Rewind" class="ico" style="margin-left: 0;" onclick="prevSong()" src="/andromeda/assets/rewind.png">
+      <img alt="Play/Pause" class="ico" onclick="playPause()" id="pp" src="/andromeda/assets/pause.png">
+      <img alt="Fast Forward" class="ico" onclick="randomSong()" src="/andromeda/assets/fast-forward.png">
      </div>
      <div class="secondCont">
-      <img class="ico b1 b2" onclick="rewind()" src="/andromeda/assets/restart.png">
-      <img class="ico b1" onclick="toggleLyr()" src="/andromeda/assets/music.png">
-      <img class="ico b1" onclick="toggleSel()" src="/andromeda/assets/menu.png">
+      <img alt="Restart Song" class="ico b1 b2" onclick="rewind()" src="/andromeda/assets/restart.png">
+      <img alt="Music" class="ico b1" onclick="toggleLyr()" src="/andromeda/assets/music.png">
+      <img alt="Menu" class="ico b1" onclick="toggleSel()" src="/andromeda/assets/menu.png">
      </div>
     </div>
    </div> <!-- /#songDes -->
@@ -58,39 +58,39 @@
    <div id="selCont"><div class="rel">
 
     <div class="sel s1" onclick="specSong(0)">
-     <div class="miniAlb"><img class="mini" src="/andromeda/albums/Bad_Liar.jpg"></div>
+     <div class="miniAlb"><img alt="Song Cover" class="mini" src="/andromeda/albums/Bad_Liar.jpg"></div>
      <div class="miniCont"><span class="small">Bad Liar</span><br><span class="tiny">Imagine Dragons</span></div>
     </div>
     <div class="sel s2" onclick="specSong(1)">
-     <div class="miniAlb"><img class="mini" src="/andromeda/albums/Blossom.jpeg"></div>
+     <div class="miniAlb"><img alt="Song Cover" class="mini" src="/andromeda/albums/Blossom.jpeg"></div>
      <div class="miniCont"><span class="small">Blossom</span><br><span class="tiny">Milky Chance</span></div>
     </div>
     <div class="sel s1" onclick="specSong(2)">
-     <div class="miniAlb"><img class="mini" src="/andromeda/albums/Bones.jpg"></div>
+     <div class="miniAlb"><img alt="Song Cover" class="mini" src="/andromeda/albums/Bones.jpg"></div>
      <div class="miniCont"><span class="small">Bones</span><br><span class="tiny">Galantis ft. OneRepublic</span></div>
     </div>
     <div class="sel s2" onclick="specSong(3)">
-     <div class="miniAlb"><img class="mini" src="/andromeda/albums/Clocks.jpg"></div>
+     <div class="miniAlb"><img alt="Song Cover" class="mini" src="/andromeda/albums/Clocks.jpg"></div>
      <div class="miniCont"><span class="small">Clocks</span><br><span class="tiny">Coldplay</span></div>
     </div>
     <div class="sel s1" onclick="specSong(4)">
-     <div class="miniAlb"><img class="mini" src="/andromeda/albums/Cocoon.jpg"></div>
+     <div class="miniAlb"><img alt="Song Cover" class="mini" src="/andromeda/albums/Cocoon.jpg"></div>
      <div class="miniCont"><span class="small">Cocoon</span><br><span class="tiny">Milky Chance</span></div>
     </div>
     <div class="sel s2" onclick="specSong(5)">
-     <div class="miniAlb"><img class="mini" src="/andromeda/albums/Blossom.jpeg"></div>
+     <div class="miniAlb"><img alt="Song Cover" class="mini" src="/andromeda/albums/Blossom.jpeg"></div>
      <div class="miniCont"><span class="small">Cold Blue Rain</span><br><span class="tiny">Milky Chance</span></div>
     </div>
     <div class="sel s1" onclick="specSong(6)">
-     <div class="miniAlb"><img class="mini" src="/andromeda/albums/Sadnecessary.jpg"></div>
+     <div class="miniAlb"><img alt="Song Cover" class="mini" src="/andromeda/albums/Sadnecessary.jpg"></div>
      <div class="miniCont"><span class="small">Fairytale</span><br><span class="tiny">Milky Chance</span></div>
     </div>
     <div class="sel s2" onclick="specSong(7)">
-     <div class="miniAlb"><img class="mini" src="/andromeda/albums/Sadnecessary.jpg"></div>
+     <div class="miniAlb"><img alt="Song Cover" class="mini" src="/andromeda/albums/Sadnecessary.jpg"></div>
      <div class="miniCont"><span class="small">Flashed Junk Mind</span><br><span class="tiny">Milky Chance</span></div>
     </div>
 
-    <img class="ico xBut" onclick="toggleSel()" src="/andromeda/assets/delete-sign.png">
+    <img class="ico xBut" alt="Close" onclick="toggleSel()" src="/andromeda/assets/delete-sign.png">
    </div></div>
 
    <div id="lyrCont">
@@ -101,7 +101,7 @@
     <span class="medium canc h" style="color: #999;" id="song_p1">-</span><br>
     <span class="medium canc h" style="color: #777;" id="song_p2">-</span>
 
-    <img class="ico xBut" onclick="toggleLyr()" src="/andromeda/assets/delete-sign.png">
+    <img class="ico xBut"  alt="Close" onclick="toggleLyr()" src="/andromeda/assets/delete-sign.png">
    </div>
 
   </div> <!-- /#desCont -->

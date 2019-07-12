@@ -43,13 +43,13 @@ lyrics[4] = ["-","-","Eh-ah, eh-ah, eh-ah, eh-oh","Eh-ah, eh-ah, oh","Eh-ah, eh-
 timestamps[7] = [8,12,16,20,24,28.5,32.5,36.5,40.5,43.5,48.5,52,57,60,65,68.5,74,89.5,93.5,97.5,101.5,105,110,113.5,118,122,125,130,
 133.5,138,141,146,150,155,179,182,186,190,195,198,203,207];
 lyrics[7] = ["-","-","[Music]","When we were young souls","On the junk-yard","Now we are stunned minds","Full of junk-goods","But I feel your heartbeat","Just like mine",
-"I feel your heartbeat","All the time","And we were bound to the citylife","Flashlights when weÃ¢â‚¬â„¢re falling into the night","Focused on what you feel",
-"Just when you were calling her love that day","And we were bound to the citylife","Flashlights when weÃ¢â‚¬â„¢re falling into the night","Focused on what you feel",
+"I feel your heartbeat","All the time","And we were bound to the citylife","Flashlights when we're falling into the night","Focused on what you feel",
+"Just when you were calling her love that day","And we were bound to the citylife","Flashlights when we're falling into the night","Focused on what you feel",
 "Just when you were calling her love that day","[Music]","When we were young souls","On the junk-yard","Now we are stunned minds","Full of junk-goods",
-"But I feel your heartbeat","Just like mine","I feel your heartbeat","All the time","And we were bound to the citylife","Flashlights when weÃ¢â‚¬â„¢re falling into the night",
-"Focused on what you feel","Just when you were calling her love that day","And we were bound to the citylife","Flashlights when weÃ¢â‚¬â„¢re falling into the night",
-"Focused on what you feel","Just when you were calling her love that day","[Music]","And we were bound to the citylife","Flashlights when weÃ¢â‚¬â„¢re falling into the night",
-"Focused on what you feel","Just when you were calling her love that day","And we were bound to the citylife","Flashlights when weÃ¢â‚¬â„¢re falling into the night",
+"But I feel your heartbeat","Just like mine","I feel your heartbeat","All the time","And we were bound to the citylife","Flashlights when we're falling into the night",
+"Focused on what you feel","Just when you were calling her love that day","And we were bound to the citylife","Flashlights when we're falling into the night",
+"Focused on what you feel","Just when you were calling her love that day","[Music]","And we were bound to the citylife","Flashlights when we're falling into the night",
+"Focused on what you feel","Just when you were calling her love that day","And we were bound to the citylife","Flashlights when we're falling into the night",
 "Focused on what you feel","Just when you were calling her love that day","-","-"];
 
 timestamps[10] = [10.5,15,16,20,21,25,31,35,36,40.,41.5,45.5,51.5,55.5,56.5,62,67.5,72,79,83,84,88,89,93,99,103,104,108,109,103.5,120,125,129.5,137,
@@ -78,7 +78,7 @@ lyrics[17] = ["-","-","[Music]","Run away with me","Lost souls and reverie","Run
 
 timestamps[19] = [25,29,34,38,43,47,51,55,63,65,67,70,72,76,80,82,84,87,89,93,97,101,119,122,127,131,135,140,144,148,156,158,160,
 163,165,169,173,175,177,180,182,186,190,194,211,213,215,217,219,223,227,229,231,234,236,240,245,248];
-lyrics[19] = ["-","-","[Music]","I want you by my side","So that I never feel alone again","TheyÃ¢â‚¬â„¢ve always been so kind","But now theyÃ¢â‚¬â„¢ve brought you away from here",
+lyrics[19] = ["-","-","[Music]","I want you by my side","So that I never feel alone again","They've always been so kind","But now they've brought you away from here",
 "I hope they didn't get your mind","Your heart is too strong anyway","We need to fetch back the time","They have stolen from us","And I want you",
 "We can bring it on the floor","You've never danced like this before","We don't talk about it","Dancin' on do the boogie all night long",
 "Stoned in paradise, shouldn't talk about it","And I want you","We can bring it on the floor","You've never danced like this before",

@@ -197,5 +197,16 @@ span:hover { cursor: default; }
  #butCont { margin: auto; display: block; }
  .b2 { margin-left: 0; }
  .large { font-size: 48px; }
- .medium { font-size: 32px; }
+ .medium { font-size: 28px; }
+}
+
+@media only screen and (min-width: 3500px) {
+ .ico {
+  height: 60px;
+  width: 60px;
+  padding: 15px;
+  margin-left: 20px;
+ }
+ .large { font-size: 72px; }
+ .medium { font-size: 42px; }
 }

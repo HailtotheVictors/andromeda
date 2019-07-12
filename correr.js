@@ -185,7 +185,7 @@ function specSong(x) {
 function playSong() {
  rep = 0;
  going = true;
- document.getElementById("pp").src = "https://img.icons8.com/material/48/000000/pause.png";
+ document.getElementById("pp").src = "/andromeda/assets/pause.png";
  var elem = document.getElementById("masterAudio");
  elem.src = "https://hailtothevictors.github.io/andromeda/AndromedaX/" + songInfo[num][0] + ".mp3";
  $("#songName").text(songInfo[num][1]);
@@ -216,17 +216,17 @@ function playPause() {
  if (going == true) {
   elem.pause();
   going = false;
-  px.src = "https://img.icons8.com/material/48/000000/play.png";
+  px.src = "/andromeda/assets/play.png";
  } else {
   elem.play();
   going = true;
-  px.src = "https://img.icons8.com/material/48/000000/pause.png";
+  px.src = "/andromeda/assets/pause.png";
  }
 }
 
 function rewind() {
  going = true;
- document.getElementById("pp").src = "https://img.icons8.com/material/48/000000/pause.png";
+ document.getElementById("pp").src = "/andromeda/assets/pause.png";
  var elem = document.getElementById("masterAudio");
  elem.currentTime = 0;
  elem.play();

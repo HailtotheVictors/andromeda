@@ -1,4 +1,4 @@
-const PRECACHE = 'andromeda-cache-v28';
+const PRECACHE = 'andromeda-cache-v29';
 const RUNTIME = 'runtime';
 const andro_version = 'V28';
 

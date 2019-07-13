@@ -264,11 +264,12 @@ $(window).keypress(function(e) {
 });
 
  if ('mediaSession' in navigator) {
+  var cover = "https://hailtothevictors.github.io" + songInfo[num][3];
   navigator.mediaSession.metadata = new MediaMetadata({
    title: songInfo[num][1],
    artist: songInfo[num][2],
    album: songInfo[num][4],
-   artwork: { src: songInfo[num][3], type: 'image/jpg' }
+   artwork: { src: cover, type: 'image/jpg' }
   });
  }
 

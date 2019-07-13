@@ -157,8 +157,8 @@ var going = true;
 function randomSong() {
  var totalSongs = songInfo.length;
  var pseudo = Math.floor(Math.random() * totalSongs);
- while (pseudo == num) {
-  num = Math.floor(Math.random() * totalSongs);
+ while (pseudo == songHistory[songHistory.length - 1] || pseudo == songHistory[songHistory.length - 2] || pseudo == songHistory[songHistory.length - 3]) {
+  pseudo = Math.floor(Math.random() * totalSongs);
  }
  num = pseudo;
  console.log(num);

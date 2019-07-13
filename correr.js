@@ -263,22 +263,24 @@ $(window).keypress(function(e) {
  if (e.which === 32) { playPause() }
 });
 
- if ('mediaSession' in navigator) {
-  var cover = "https://hailtothevictors.github.io" + songInfo[num][3];
-  navigator.mediaSession.metadata = new MediaMetadata({
-   title: songInfo[num][1],
-   artist: songInfo[num][2],
-   album: songInfo[num][4],
-   artwork: [
-      { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-96x96.png',   sizes: '96x96',   type: 'image/png' },
-      { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-128x128.png', sizes: '128x128', type: 'image/png' },
-      { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
-      { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-256x256.png', sizes: '256x256', type: 'image/png' },
-      { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-384x384.png', sizes: '384x384', type: 'image/png' },
-      { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
-    ]
-  });
- }
+if ('mediaSession' in navigator) {
+ var titlex = songInfo[num][1];
+ var artistx = songInfo[num][2];
+ var albumx = songInfo[num][4]
+ navigator.mediaSession.metadata = new MediaMetadata({
+  title: titlex,
+  artist: artistx,
+  album: albumx,
+  artwork: [
+     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-96x96.png',   sizes: '96x96',   type: 'image/png' },
+     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-128x128.png', sizes: '128x128', type: 'image/png' },
+     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-256x256.png', sizes: '256x256', type: 'image/png' },
+     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-384x384.png', sizes: '384x384', type: 'image/png' },
+     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
+   ]
+ });
+}
 
 navigator.mediaSession.setActionHandler('previoustrack', function() { prevSong() });
 navigator.mediaSession.setActionHandler('nexttrack', function() { randomSong() });

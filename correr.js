@@ -147,6 +147,7 @@ songInfo[22] = ["The_Nights","The Nights","Avicii","/andromeda/albums/The_Nights
 songInfo[23] = ["Viva_La_Vida","Viva la Vida","Coldplay","/andromeda/albums/Viva_la_Vida.png","Viva la Vida (2008)"];
 songInfo[24] = ["Waiting_for_Love","Waiting for Love","Avicii","/andromeda/albums/Waiting_for_Love.jpg","[Single] (2015)"];
 songInfo[25] = ["Wish_I_Knew_You","Wish I Knew You","The Revivalists","/andromeda/albums/Men_Amongst_Mountains.jpg","Men Amongst Mountains (2016)"];
+songInfo[26] = ["Clouds","Clouds","Milky Chance","/andromeda/albums/Blossom.jpeg","Blossom (2017)"];
 
 var plays = -1;
 var songHistory = [];

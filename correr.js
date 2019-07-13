@@ -121,7 +121,7 @@ setInterval(function(){
 }, 50);
 
 var songInfo = [];
-songInfo[0] = ["Bad_Liar","Bad Liar","Imagine Dragons | [Single] (2018)","/andromeda/albums/Bad_Liar.jqg"];
+songInfo[0] = ["Bad_Liar","Bad Liar","Imagine Dragons | [Single] (2018)","/andromeda/albums/Bad_Liar.jpg"];
 songInfo[1] = ["Blossom","Blossom","Milky Chance | Blossom (2017)","/andromeda/albums/Blossom.jpeg"];
 songInfo[2] = ["Bones","Bones","Galantis ft. OneRepublic | [Single] (2019)","/andromeda/albums/Bones.jpg"];
 songInfo[3] = ["Clocks","Clocks","Coldplay | [Single] (2002)","/andromeda/albums/Clocks.jpg"];

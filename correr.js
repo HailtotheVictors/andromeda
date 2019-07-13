@@ -268,7 +268,7 @@ if ('mediaSession' in navigator) {
   title: songInfo[num][1],
   artist: songInfo[num][2],
   album: songInfo[num[4],
-  artwork: [ { src: songInfo[num][3]} ]
+  artwork: { src: songInfo[num][3], type: 'image/jpg' }
  });
 }
 

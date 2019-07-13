@@ -150,7 +150,7 @@ songInfo[25] = ["Wish_I_Knew_You","Wish I Knew You","The Revivalists","/andromed
 
 var plays = -1;
 var songHistory = [];
-var num = 0;
+var num;
 var songSource;
 var going = true;
 
@@ -208,6 +208,22 @@ function playSong() {
   $("#song_p1").text("-");
   $("#song_p2").text("-");
  }
+ var titlex = songInfo[num][1];
+ var artistx = songInfo[num][2];
+ var albumx = songInfo[num][4]
+ navigator.mediaSession.metadata = new MediaMetadata({
+  title: titlex,
+  artist: artistx,
+  album: albumx,
+  artwork: [
+     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-96x96.png',   sizes: '96x96',   type: 'image/png' },
+     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-128x128.png', sizes: '128x128', type: 'image/png' },
+     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-256x256.png', sizes: '256x256', type: 'image/png' },
+     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-384x384.png', sizes: '384x384', type: 'image/png' },
+     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
+   ]
+ });
 }
 
 function playPause() {
@@ -262,25 +278,6 @@ function toggleLyr() {
 $(window).keypress(function(e) {
  if (e.which === 32) { playPause() }
 });
-
-if ('mediaSession' in navigator) {
- var titlex = songInfo[num][1];
- var artistx = songInfo[num][2];
- var albumx = songInfo[num][4]
- navigator.mediaSession.metadata = new MediaMetadata({
-  title: titlex,
-  artist: artistx,
-  album: albumx,
-  artwork: [
-     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-96x96.png',   sizes: '96x96',   type: 'image/png' },
-     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-128x128.png', sizes: '128x128', type: 'image/png' },
-     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
-     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-256x256.png', sizes: '256x256', type: 'image/png' },
-     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-384x384.png', sizes: '384x384', type: 'image/png' },
-     { src: 'https://hailtothevictors.github.io/andromeda/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
-   ]
- });
-}
 
 navigator.mediaSession.setActionHandler('previoustrack', function() { prevSong() });
 navigator.mediaSession.setActionHandler('nexttrack', function() { randomSong() });

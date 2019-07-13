@@ -263,14 +263,16 @@ $(window).keypress(function(e) {
  if (e.which === 32) { playPause() }
 });
 
-if ('mediaSession' in navigator) {
- navigator.mediaSession.metadata = new MediaMetadata({
-  title: songInfo[num][1],
-  artist: songInfo[num][2],
-  album: songInfo[num][4],
-  artwork: { src: songInfo[num][3], type: 'image/jpg' }
- });
-}
+setTimeout(function(){
+ if ('mediaSession' in navigator) {
+  navigator.mediaSession.metadata = new MediaMetadata({
+   title: songInfo[num][1],
+   artist: songInfo[num][2],
+   album: songInfo[num][4],
+   artwork: { src: songInfo[num][3], type: 'image/jpg' }
+  });
+ }
+}, 3000);
 
 navigator.mediaSession.setActionHandler('previoustrack', function() { prevSong() });
 navigator.mediaSession.setActionHandler('nexttrack', function() { randomSong() });

@@ -150,7 +150,7 @@ songInfo[25] = ["Wish_I_Knew_You","Wish I Knew You","The Revivalists","/andromed
 
 var plays = -1;
 var songHistory = [];
-var num;
+var num = 0;
 var songSource;
 var going = true;
 
@@ -263,7 +263,6 @@ $(window).keypress(function(e) {
  if (e.which === 32) { playPause() }
 });
 
-setTimeout(function(){
  if ('mediaSession' in navigator) {
   navigator.mediaSession.metadata = new MediaMetadata({
    title: songInfo[num][1],
@@ -272,7 +271,6 @@ setTimeout(function(){
    artwork: { src: songInfo[num][3], type: 'image/jpg' }
   });
  }
-}, 3000);
 
 navigator.mediaSession.setActionHandler('previoustrack', function() { prevSong() });
 navigator.mediaSession.setActionHandler('nexttrack', function() { randomSong() });

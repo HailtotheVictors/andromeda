@@ -121,32 +121,32 @@ setInterval(function(){
 }, 50);
 
 var songInfo = [];
-songInfo[0] = ["Bad_Liar","Bad Liar","Imagine Dragons | [Single] (2018)","/andromeda/albums/Bad_Liar.jpg"];
-songInfo[1] = ["Blossom","Blossom","Milky Chance | Blossom (2017)","/andromeda/albums/Blossom.jpeg"];
-songInfo[2] = ["Bones","Bones","Galantis ft. OneRepublic | [Single] (2019)","/andromeda/albums/Bones.jpg"];
-songInfo[3] = ["Clocks","Clocks","Coldplay | [Single] (2002)","/andromeda/albums/Clocks.jpg"];
-songInfo[4] = ["Cocoon","Cocoon","Milky Chance | [Single] (2016)","/andromeda/albums/Cocoon.jpg"];
-songInfo[5] = ["Cold_Blue_Rain","Cold Blue Rain","Milky Chance | Blossom (2017)","/andromeda/albums/Blossom.jpeg"];
-songInfo[6] = ["Fairytale","Fairytale","Milky Chance | Sadnecessary (2013)","/andromeda/albums/Sadnecessary.jpg"];
-songInfo[7] = ["Flashed_Junk_Mind","Flashed Junk Mind","Milky Chance | Sadnecessary (2013)","/andromeda/albums/Sadnecessary.jpg"];
-songInfo[8] = ["Hey_Brother","Hey Brother","Avicii | [Single] (2013)","/andromeda/albums/Hey_Brother.jpg"];
-songInfo[9] = ["Ho_Hey","Ho Hey","The Lumineers | The Lumineers (2012)","/andromeda/albums/The_Lumineers.jpeg"];
-songInfo[10] = ["I_Need_a_Dollar","I Need a Dollar","Aloe Blacc | [Single] (2010)","/andromeda/albums/I_Need_a_Dollar.jpg"];
-songInfo[11] = ["Machine","Machine","Imagine Dragons | [Single] (2018)","/andromeda/albums/Machine.jpg"];
-songInfo[12] = ["Natural","Natural","Imagine Dragons | [Single] (2018)","/andromeda/albums/Natural.jpg"];
-songInfo[13] = ["Only","Only","Imagine Dragons | Origins (2018)","/andromeda/albums/Origins.jpg"];
-songInfo[14] = ["Ophelia","Ophelia","The Lumineers | [Single] (2016)","/andromeda/albums/Ophelia.jpg"];
-songInfo[15] = ["Paradise","Paradise","Coldplay | [Single] (2011)","/andromeda/albums/Paradise.jpg"];
-songInfo[16] = ["Pompeii","Pompeii","Bastille | [Single] (2013)","/andromeda/albums/Pompeii.jpg"];
-songInfo[17] = ["Renegades","Renegades","X Ambassadors | [Single] (2015)","/andromeda/albums/Renegades.jpg"];
-songInfo[18] = ["Riptide","Riptide","Vance Joy | [Single] (2013)","/andromeda/albums/Riptide.jpg"];
-songInfo[19] = ["Stolen_Dance","Stolen Dance","Milky Chance | [Single] (2012)","/andromeda/albums/Stolen_Dance.jpg"];
-songInfo[20] = ["Stolen_Dance_Flic_Flac","Stolen Dance (Flic Flac Edit)","Milky Chance | [Single] (2013)","/andromeda/albums/Stolen_Dance_Flic_Flac.jfif"];
-songInfo[21] = ["Stubborn_Love","Stubborn Love","The Lumineers | The Lumineers (2012)","/andromeda/albums/The_Lumineers.jpeg"];
-songInfo[22] = ["The_Nights","The Nights","Avicii | [Single] (2014)","/andromeda/albums/The_Nights.jpg"];
-songInfo[23] = ["Viva_La_Vida","Viva la Vida","Coldplay | Viva la Vida (2008)","/andromeda/albums/Viva_la_Vida.png"];
-songInfo[24] = ["Waiting_for_Love","Waiting for Love","Avicii | [Single] (2015)","/andromeda/albums/Waiting_for_Love.jpg"];
-songInfo[25] = ["Wish_I_Knew_You","Wish I Knew You","The Revivalists | Men Amongst Mountains (2016)","/andromeda/albums/Men_Amongst_Mountains.jpg"];
+songInfo[0] = ["Bad_Liar","Bad Liar","Imagine Dragons","/andromeda/albums/Bad_Liar.jpg","[Single] (2018)"];
+songInfo[1] = ["Blossom","Blossom","Milky Chance","/andromeda/albums/Blossom.jpeg","Blossom (2017)"];
+songInfo[2] = ["Bones","Bones","Galantis ft. OneRepublic","/andromeda/albums/Bones.jpg","[Single] (2019)"];
+songInfo[3] = ["Clocks","Clocks","Coldplay","/andromeda/albums/Clocks.jpg","[Single] (2002)"];
+songInfo[4] = ["Cocoon","Cocoon","Milky Chance","/andromeda/albums/Cocoon.jpg","[Single] (2016)"];
+songInfo[5] = ["Cold_Blue_Rain","Cold Blue Rain","Milky Chance","/andromeda/albums/Blossom.jpeg","Blossom (2017)"];
+songInfo[6] = ["Fairytale","Fairytale","Milky Chance","/andromeda/albums/Sadnecessary.jpg","Sadnecessary (2013)"];
+songInfo[7] = ["Flashed_Junk_Mind","Flashed Junk Mind","Milky Chance","/andromeda/albums/Sadnecessary.jpg","Sadnecessary (2013)"];
+songInfo[8] = ["Hey_Brother","Hey Brother","Avicii","/andromeda/albums/Hey_Brother.jpg","[Single] (2013)"];
+songInfo[9] = ["Ho_Hey","Ho Hey","The Lumineers","/andromeda/albums/The_Lumineers.jpeg","The Lumineers (2012)"];
+songInfo[10] = ["I_Need_a_Dollar","I Need a Dollar","Aloe Blacc","/andromeda/albums/I_Need_a_Dollar.jpg","[Single] (2010)"];
+songInfo[11] = ["Machine","Machine","Imagine Dragons","/andromeda/albums/Machine.jpg","[Single] (2018)"];
+songInfo[12] = ["Natural","Natural","Imagine Dragons","/andromeda/albums/Natural.jpg","[Single] (2018)"];
+songInfo[13] = ["Only","Only","Imagine Dragons","/andromeda/albums/Origins.jpg","Origins (2018)"];
+songInfo[14] = ["Ophelia","Ophelia","The Lumineers","/andromeda/albums/Ophelia.jpg","[Single] (2016)"];
+songInfo[15] = ["Paradise","Paradise","Coldplay","/andromeda/albums/Paradise.jpg","[Single] (2011)"];
+songInfo[16] = ["Pompeii","Pompeii","Bastille","/andromeda/albums/Pompeii.jpg","[Single] (2013)"];
+songInfo[17] = ["Renegades","Renegades","X Ambassadors","/andromeda/albums/Renegades.jpg","[Single] (2015)"];
+songInfo[18] = ["Riptide","Riptide","Vance Joy","/andromeda/albums/Riptide.jpg","[Single] (2013)"];
+songInfo[19] = ["Stolen_Dance","Stolen Dance","Milky Chance","/andromeda/albums/Stolen_Dance.jpg","[Single] (2012)"];
+songInfo[20] = ["Stolen_Dance_Flic_Flac","Stolen Dance (Flic Flac Edit)","Milky Chance","/andromeda/albums/Stolen_Dance_Flic_Flac.jfif","[Single] (2013)"];
+songInfo[21] = ["Stubborn_Love","Stubborn Love","The Lumineers","/andromeda/albums/The_Lumineers.jpeg","The Lumineers (2012)"];
+songInfo[22] = ["The_Nights","The Nights","Avicii","/andromeda/albums/The_Nights.jpg","[Single] (2014)"];
+songInfo[23] = ["Viva_La_Vida","Viva la Vida","Coldplay","/andromeda/albums/Viva_la_Vida.png","Viva la Vida (2008)"];
+songInfo[24] = ["Waiting_for_Love","Waiting for Love","Avicii","/andromeda/albums/Waiting_for_Love.jpg","[Single] (2015)"];
+songInfo[25] = ["Wish_I_Knew_You","Wish I Knew You","The Revivalists","/andromeda/albums/Men_Amongst_Mountains.jpg","Men Amongst Mountains (2016)"];
 
 var plays = -1;
 var songHistory = [];
@@ -189,7 +189,7 @@ function playSong() {
  var elem = document.getElementById("masterAudio");
  elem.src = "https://hailtothevictors.github.io/andromeda/AndromedaX/" + songInfo[num][0] + ".mp3";
  $("#songName").text(songInfo[num][1]);
- $("#songX").text(songInfo[num][2]);
+ $("#songX").text(songInfo[num][2] + " | " + songInfo[num][4]);
  elem.play();
  songHistory.push(num);
  plays++;
@@ -262,6 +262,20 @@ function toggleLyr() {
 $(window).keypress(function(e) {
  if (e.which === 32) { playPause() }
 });
+
+if ('mediaSession' in navigator) {
+ navigator.mediaSession.metadata = new MediaMetadata({
+  title: songInfo[num][1],
+  artist: songInfo[num][2],
+  album: songInfo[num[4],
+  artwork: [ { src: songInfo[num][3]} ]
+ });
+}
+
+navigator.mediaSession.setActionHandler('previoustrack', function() { prevSong() });
+navigator.mediaSession.setActionHandler('nexttrack', function() { randomSong() });
+navigator.mediaSession.setActionHandler('play', function() {  playPause() });
+navigator.mediaSession.setActionHandler('pause', function() { playPause() });
 
 setInterval(function(){ 
  var elem = document.getElementById("masterAudio");

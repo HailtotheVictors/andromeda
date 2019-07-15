@@ -247,6 +247,7 @@ function rewind() {
  var elem = document.getElementById("masterAudio");
  elem.currentTime = 0;
  elem.play();
+ reps = 0;
 }
 
 var showing = "controls";

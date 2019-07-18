@@ -120,6 +120,7 @@ setInterval(function(){
  }
 }, 50);
 
+
 var songInfo = [];
 songInfo[0] = ["Bad_Liar","Bad Liar","Imagine Dragons","/andromeda/albums/Bad_Liar.jpg","[Single] (2018)"];
 songInfo[1] = ["Blossom","Blossom","Milky Chance","/andromeda/albums/Blossom.jpeg","Blossom (2017)"];

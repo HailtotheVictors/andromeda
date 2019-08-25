@@ -1,3 +1,4 @@
+
 var supported = [1,2,4,7,10,17,19,23];
 var timestamps = [];
 var lyrics = [];
@@ -127,8 +128,8 @@ songInfo[1] = ["Blossom","Blossom","Milky Chance","/andromeda/albums/Blossom.jpe
 songInfo[2] = ["Bones","Bones","Galantis ft. OneRepublic","/andromeda/albums/Bones.jpg","[Single] (2019)"];
 songInfo[3] = ["Clocks","Clocks","Coldplay","/andromeda/albums/Clocks.jpg","[Single] (2002)"];
 songInfo[4] = ["Cocoon","Cocoon","Milky Chance","/andromeda/albums/Cocoon.jpg","[Single] (2016)"];
-songInfo[5] = ["Cold_Blue_Rain","Cold Blue Rain","Milky Chance","/andromeda/albums/Blossom.jpeg","Blossom (2017)"];
-songInfo[6] = ["Fairytale","Fairytale","Milky Chance","/andromeda/albums/Sadnecessary.jpg","Sadnecessary (2013)"];
+songInfo[5] = ["demons","Demons","Imagine Dragons","/andromeda/albums/Night_Visions.jpg","Night Visions (2013)"];
+songInfo[6] = ["beliver","Beliver","Imagine Dragons","/andromeda/albums/believer.jpg","[Single] (2017)"];
 songInfo[7] = ["Flashed_Junk_Mind","Flashed Junk Mind","Milky Chance","/andromeda/albums/Sadnecessary.jpg","Sadnecessary (2013)"];
 songInfo[8] = ["Hey_Brother","Hey Brother","Avicii","/andromeda/albums/Hey_Brother.jpg","[Single] (2013)"];
 songInfo[9] = ["Ho_Hey","Ho Hey","The Lumineers","/andromeda/albums/The_Lumineers.jpeg","The Lumineers (2012)"];
@@ -149,7 +150,7 @@ songInfo[23] = ["Viva_La_Vida","Viva la Vida","Coldplay","/andromeda/albums/Viva
 songInfo[24] = ["Waiting_for_Love","Waiting for Love","Avicii","/andromeda/albums/Waiting_for_Love.jpg","[Single] (2015)"];
 songInfo[25] = ["Wish_I_Knew_You","Wish I Knew You","The Revivalists","/andromeda/albums/Men_Amongst_Mountains.jpg","Men Amongst Mountains (2016)"];
 songInfo[26] = ["Clouds","Clouds","Milky Chance","/andromeda/albums/Blossom.jpeg","Blossom (2017)"];
-songInfo[27] = ["Ahead_Of_Myself","Ahead Of Myself","X Ambassadors","/andromeda/albums/Ahead_Of_Myself.jpg","[Single] (2017)"];
+songInfo[27] = ["ibetmylife","I Bet My Life","Imagine Dragons","/andromeda/albums/ibetmylife.jpg","[Single] (2014)"];
 songInfo[28] = ["All_The_Right_Moves","All the Right Moves","OneRepublic","/andromeda/albums/All_The_Right_Moves.jpg","[Single (2009)"];
 songInfo[29] = ["Apologize","Apologize","OneRpublic","/andromeda/albums/Apologize.jpg","[Single] (2006)"];
 songInfo[30] = ["Bleeding_Out","Bleeding Out","Imagine Dragons","/andromeda/albums/Night_Visions.jpg","Night Visions (2012)"];
@@ -168,6 +169,10 @@ songInfo[42] = ["Shots","Shots","Imagine Dragons","/andromeda/albums/Shots_Broil
 songInfo[43] = ["Shots_Broiler","Shots (Broiler Remix)","Imagine Dragons","/andromeda/albums/Shots_Broiler.jpg","[Single] (2015)"];
 songInfo[44] = ["Two_High","Two High","Moon Taxi","/andromeda/albums/Two_High.jpg","[Single] (2017)"];
 songInfo[45] = ["Unpack_Your_Heart","Unpack Your Heart","Phillip Phillips","/andromeda/albums/Behind_The_Light.jpg","Behind the Light (2014)"];
+songInfo[46] = ["thunder","Thunder","Imagine Dragon","/andromeda/albums/thunder.jpg","[Single] (2017)"];
+songInfo[47] = ["warriors","Warriors","Imagine Dragons","/andromeda/albums/warriors.jpg","[Single] (2014)"];
+singIngo[48] = ["itstime","It's Time","Imagine Dragons","/andromeda/albums/itstime.jpg","[Single] (2017)"];
+singInfo[49] = ["whateverittakes","Whatever It Takes","/andromeda/albums/whateverittakes.jpg","[Single] (2017)"];
 
 var plays = -1;
 var songHistory = [];
@@ -229,7 +234,7 @@ function playSong() {
   $("#song_p1").text("-");
   $("#song_p2").text("-");
  }
-var titlex = songInfo[num][1];
+ var titlex = songInfo[num][1];
  var artistx = songInfo[num][2];
  var albumx = songInfo[num][4]
  navigator.mediaSession.metadata = new MediaMetadata({
@@ -262,12 +267,14 @@ function playPause() {
 }
 
 function rewind() {
- going = true;
+ /* going = true;
  document.getElementById("pp").src = "/andromeda/assets/pause.png";
  var elem = document.getElementById("masterAudio");
  elem.currentTime = 0;
  elem.play();
- reps = 0;
+ reps = 0; */
+ document.getElementById("masterAudio").currentTime = 0;
+ specSong(num)
 }
 
 var showing = "controls";

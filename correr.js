@@ -171,8 +171,8 @@ songInfo[44] = ["Two_High","Two High","Moon Taxi","/andromeda/albums/Two_High.jp
 songInfo[45] = ["Unpack_Your_Heart","Unpack Your Heart","Phillip Phillips","/andromeda/albums/Behind_The_Light.jpg","Behind the Light (2014)"];
 songInfo[46] = ["thunder","Thunder","Imagine Dragon","/andromeda/albums/thunder.jpg","[Single] (2017)"];
 songInfo[47] = ["warriors","Warriors","Imagine Dragons","/andromeda/albums/warriors.jpg","[Single] (2014)"];
-singInfo[48] = ["itstime","It's Time","Imagine Dragons","/andromeda/albums/itstime.jpg","[Single] (2017)"];
-singInfo[49] = ["whateverittakes","Whatever It Takes","/andromeda/albums/whateverittakes.jpg","[Single] (2017)"];
+songInfo[48] = ["itstime","It's Time","Imagine Dragons","/andromeda/albums/itstime.jpg","[Single] (2017)"];
+songInfo[49] = ["whateverittakes","Whatever It Takes","/andromeda/albums/whateverittakes.jpg","[Single] (2017)"];
 
 var plays = -1;
 var songHistory = [];

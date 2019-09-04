@@ -1,6 +1,6 @@
-const PRECACHE = 'andromeda-cache-v46';
+const PRECACHE = 'andromeda-cache-v47';
 const RUNTIME = 'runtime';
-const andro_version = 'V46';
+const andro_version = 'V47';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [

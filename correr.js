@@ -105,7 +105,7 @@ lyrics[23] = ["-","-","[Music]","I used to rule the world","Seas would rise when
 "Oh, oh, oh, oh, oh","I hear Jerusalem bells are ringing","Roman Calvary choirs are singing","Be my mirror, my sword and shield","My missionaries in a foreign field",
 "For some reason I can't explain","I know Saint Peter won't call my name","Never an honest word","But that was when I ruled the world","-","-"];
 
-timestamps[50] = [4,7.28,12.6,14.66,17.04,18.2,22.04,24.02,26.12,27.96,31.56,35.66,38.62,42.34,45.64,48.68,51.76,58.22,60.68,64.98,70.38,72.24,74,77.92,79.84,
+timestamps[50] = [7.28,12.6,14.66,17.04,18.2,22.04,24.02,26.12,27.96,31.56,35.66,38.62,42.34,45.64,48.68,51.76,58.22,60.68,64.98,70.38,72.24,74,77.92,79.84,
 81.7,84,85.8,90.06,93.6,95.88,99.4,103.34,105.94,109.78,115.68,119.28,122.58,128.22,130.68,133.12,137.48,140.4,142.58,148,151.42,156.48,156.48,
 160.48,163.36,164.86,170.6,172.46,176.68,180.02,182.66,186.3,192.6,196.1,199.5,204.66,207.16,209.96,214.48];
 lyrics[50] = ["-","-","Lately, I've Been, I've Been Thinking","I Want You To Be Happier. I Want You To Be Happier","When The Morning Comes",

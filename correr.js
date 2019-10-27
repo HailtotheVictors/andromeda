@@ -1,5 +1,6 @@
 
 var supported = [1,2,4,7,10,17,19,23,50];
+var track = 0;
 var timestamps = [];
 var lyrics = [];
 timestamps[1] = [27,33,41,49,58.5,65,71,79,87,95.5,106,121,129,137.5,145,154.5,161,167,175,183,191,202.5,219,227,240,247];
@@ -221,6 +222,7 @@ function prevSong() {
 }
 
 function specSong(x) {
+ track = 0;
  num = x;
  $("#selCont").fadeOut(200);
  $("#songDes").delay(200).fadeIn(200);

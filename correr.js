@@ -335,7 +335,7 @@ function toggleSel() {
 }
 
 function toggleTrack() {
- if (showing == "vinyl") {
+ if (showing == "controls") {
   $("#songDes").fadeOut(200);
   $("#trackCont").delay(200).fadeIn(200);
   showing = "x";

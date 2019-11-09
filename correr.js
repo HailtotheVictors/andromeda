@@ -141,6 +141,16 @@ setInterval(function(){
  }
 }, 50);
 
+var track = 0;
+function changeDesign(x) {
+ if (x == 0) {
+  track = 0;
+  $(".b0").addClass("winter0");
+ } else {
+  track = 1;
+  $(".b1").removeClass("winter1");
+ }
+}
 
 var songInfo = [];
 songInfo[0] = ["Bad_Liar","Bad Liar","Imagine Dragons","/andromeda/albums/Bad_Liar.jpg","[Single] (2018)"];

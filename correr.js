@@ -141,14 +141,15 @@ setInterval(function(){
  }
 }, 50);
 
+//Quinn - 0 | Winter - 1
 var track = 0;
 function changeDesign(x) {
  if (x == 0) {
   track = 0;
-  $(".b0").addClass("winter0");
+  $(".b0").removeClass("winter0");
  } else {
   track = 1;
-  $(".b1").removeClass("winter1");
+  $(".b1").addClass("winter1");
  }
 }
 
@@ -319,6 +320,18 @@ function toggleSel() {
   showing = "x";
  } else {
   $("#selCont").fadeOut(200);
+  $("#songDes").delay(200).fadeIn(200);
+  showing = "controls";
+ }
+}
+
+function toggleTrack() {
+ if (showing == "vinyl") {
+  $("#songDes").fadeOut(200);
+  $("#trackCont").delay(200).fadeIn(200);
+  showing = "x";
+ } else {
+  $("#trackCont").fadeOut(200);
   $("#songDes").delay(200).fadeIn(200);
   showing = "controls";
  }

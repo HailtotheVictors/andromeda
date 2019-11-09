@@ -125,6 +125,15 @@ lyrics[50] = ["-","-","Lately, I've Been, I've Been Thinking","I Want You To Be 
 "Know That Means I'll Have To Leave","[Music]","Know That Means I'll Have To Leave","Lately I've Been, I've Been Thinking",
 "I Want You To Be Happier, I Want You To Be Happier","So I'll Goo","I'll Goooo","I Will Go Go Goo"];
 
+var winterSongs = [];
+winterSongs[0] = ["believe","Believe","Josh Groban","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
+winterSongs[1] = ["comestotown","When Christmas Comes to Town","Meagan Moore and Matthew Hall","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
+winterSongs[2] = ["hotchocolate","Hot Chocolate","Tom Hanks","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
+winterSongs[3] = ["polarexpress","The Polar Express","Tom Hanks","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
+winterSongs[4] = ["rockin","Rockin' on Top of the World","Steven Tyler","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
+winterSongs[5] = ["spirit","Spirit of the Season","Alan Silvestri","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
+winterSongs[6] = ["suite","Suite from the Polar Express","Alan Silvestri","/andromeda/albums/polarexpress.jpg","The Polar Express (2004)"];
+
 var rep = 0;
 setInterval(function(){ 
  if (supported.includes(num) == true) {

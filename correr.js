@@ -150,14 +150,14 @@ function changeDesign(x) {
   $(".b0").removeClass("winter0");
   $(".b1").removeClass("winter1");
   $("#logo").attr('src','https://hailtothevictors.github.io/andromeda/andro_assets/Andromeda_l_w_c.png');
-  $("#content").css('background-color','#555');
+  $("#content").css('background','#555');
  } else {
   // to Winter
   track = 1;
   $(".b1").addClass("winter1");
   $(".b0").addClass("winter0");
   $("#logo").attr('src','https://hailtothevictors.github.io/andromeda/andro_assets/andro_word_winter_c.png');
-  $("#content").css('background-image','url("https://hailtothevictors.github.io/andromeda/slower_winter.gif")');
+  $("#content").css('background','url("https://hailtothevictors.github.io/andromeda/slower_winter.gif")');
  }
  $("#trackCont").fadeOut(200);
  $("#songDes").delay(200).fadeIn(200);

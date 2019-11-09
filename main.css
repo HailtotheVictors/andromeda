@@ -39,13 +39,7 @@
  height: calc(100vh - 180px);
  width: calc(100vw - (100vh - 180px));
 }
-#selCont {
- height: 100%;
- width: 100%;
- display: none;
- overflow-y: scroll;
-}
-#trackCont {
+#selCont, #trackCont {
  height: 100%;
  width: 100%;
  display: none;

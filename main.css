@@ -132,6 +132,7 @@
  outline: none;
  border-radius: 100px;
 }
+#winterSlider { background-image: linear-gradient(to right,#ADC6DC,#244D83); }
 #slider::-webkit-slider-thumb {
  -webkit-appearance: none;
  appearance: none;
@@ -159,6 +160,10 @@ span:hover { cursor: default; }
 .ico:hover { background-color: #6363cf; }
 .b1 { background-color: #6aabeb; }
 .b1:hover { background-color: #5a9bdb; }
+.winter0 { background-color: #ADC6DC; }
+.winter0:hover { background-color: #9db6cc; }
+.winter1 { background-color: #7998B9; }
+.winter1:hover { background-color: #6988A9; }
 .ico:hover { cursor: pointer; }
 .ico:focus { outline: none; }
 .xBut {

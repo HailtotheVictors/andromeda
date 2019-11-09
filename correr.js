@@ -158,7 +158,7 @@ function changeDesign(x) {
   $(".b1").addClass("winter1");
   $(".b0").addClass("winter0");
   $("#logo").attr('src','https://hailtothevictors.github.io/andromeda/andro_assets/andro_word_winter_c.png');
-  $("#content").css('background','url("https://hailtothevictors.github.io/andromeda/slower_winter_t.gif")');
+  $("#content").css('background','url("https://hailtothevictors.github.io/andromeda/slower_winter.gif")');
   $(".large, .medium").addClass("darkText");
  }
  $("#trackCont").fadeOut(200);

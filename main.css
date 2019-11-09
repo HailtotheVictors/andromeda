@@ -97,6 +97,11 @@
 #selX > div:nth-child(odd) { background-color: #666; }
 #selX > div:nth-child(even):hover { background-image: linear-gradient(to right,#8383ef,#7abbfb); }
 #selX > div:nth-child(odd):hover { background-color: #777; }
+#trackX > div:hover { cursor: pointer; }
+#trackX > div:nth-child(even) { background-image: linear-gradient(to right,#7373df,#6aabeb); }
+#trackX > div:nth-child(odd) { background-color: #666; }
+#trackX > div:nth-child(even):hover { background-image: linear-gradient(to right,#8383ef,#7abbfb); }
+#trackX > div:nth-child(odd):hover { background-color: #777; }
 .miniAlb {
  height: 100px;
  width: 100px;

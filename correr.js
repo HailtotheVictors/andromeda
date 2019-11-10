@@ -142,9 +142,9 @@ setInterval(function(){
 
 //Quinn - 0 | Winter - 1
 var track = 0;
-function changeDesign(x) {
+function changeDesign(x,check) {
  var diff = false;
- if (x !== track) {
+ if (x !== track && check == true) {
   diff = true;
  }
  
@@ -157,6 +157,7 @@ function changeDesign(x) {
   $("#logo").attr('src','https://hailtothevictors.github.io/andromeda/andro_assets/Andromeda_l_w_c.png');
   $("#content").css('background','#555');
   $("#slider").removeClass("winterSlider");
+  $("#songName, #songX").css('background-color','none');
  } else {
   // to Winter
   track = 1;
@@ -166,6 +167,7 @@ function changeDesign(x) {
   $("#content").css('background','url("https://hailtothevictors.github.io/andromeda/slower_winter.gif")');
   $(".large, .medium").addClass("darkText");
   $("#slider").addClass("winterSlider");
+  $("#songName, #songX").css('background-color','#eee8');
  }
  $("#trackCont").fadeOut(200);
  $("#songDes").delay(200).fadeIn(200);
@@ -271,6 +273,7 @@ function specSong(x) {
  $("#selCont").fadeOut(200);
  $("#songDes").delay(200).fadeIn(200);
  showing = "controls";
+ changeDesign(0,false);
  playSong()
 }
 

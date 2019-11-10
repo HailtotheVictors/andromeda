@@ -167,8 +167,10 @@ function changeDesign(x) {
  showing = "controls";
 
  if (x !== track) {
+  console.log('c');
   randomSong()
  }
+ console.log(x + "|" + track);
 }
 
 var songInfo = [];

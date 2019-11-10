@@ -165,8 +165,7 @@ function changeDesign(x) {
  $("#trackCont").fadeOut(200);
  $("#songDes").delay(200).fadeIn(200);
  showing = "controls";
- 
- function changeDesign(x) {
+
  if (x !== track) {
   randomSong()
  }
@@ -397,7 +396,6 @@ setInterval(function(){
  var dura = elem.duration;
  var now = elem.currentTime;
  var percent = now / dura * 100;
- var per = percent.toString();
  document.getElementById("slider").value = percent;
  if (percent == 100) {
   randomSong()

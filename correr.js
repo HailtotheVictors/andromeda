@@ -1,6 +1,5 @@
 
 var supported = [1,2,4,7,10,17,19,23,50];
-var track = 0;
 var timestamps = [];
 var lyrics = [];
 timestamps[1] = [27,33,41,49,58.5,65,71,79,87,95.5,106,121,129,137.5,145,154.5,161,167,175,183,191,202.5,219,227,240,247];
@@ -125,15 +124,6 @@ lyrics[50] = ["-","-","Lately, I've Been, I've Been Thinking","I Want You To Be 
 "Know That Means I'll Have To Leave","[Music]","Know That Means I'll Have To Leave","Lately I've Been, I've Been Thinking",
 "I Want You To Be Happier, I Want You To Be Happier","So I'll Goo","I'll Goooo","I Will Go Go Goo"];
 
-var winterSongs = [];
-winterSongs[0] = ["believe","Believe","Josh Groban","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
-winterSongs[1] = ["comestotown","When Christmas Comes to Town","Meagan Moore and Matthew Hall","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
-winterSongs[2] = ["hotchocolate","Hot Chocolate","Tom Hanks","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
-winterSongs[3] = ["polarexpress","The Polar Express","Tom Hanks","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
-winterSongs[4] = ["rockin","Rockin' on Top of the World","Steven Tyler","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
-winterSongs[5] = ["spirit","Spirit of the Season","Alan Silvestri","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
-winterSongs[6] = ["suite","Suite from the Polar Express","Alan Silvestri","/andromeda/albums/polarexpress.jpg","The Polar Express (2004)"];
-
 var rep = 0;
 setInterval(function(){ 
  if (supported.includes(num) == true) {
@@ -178,57 +168,67 @@ function changeDesign(x) {
 }
 
 var songInfo = [];
-songInfo[0] = ["Bad_Liar","Bad Liar","Imagine Dragons","/andromeda/albums/Bad_Liar.jpg","[Single] (2018)"];
-songInfo[1] = ["Blossom","Blossom","Milky Chance","/andromeda/albums/Blossom.jpeg","Blossom (2017)"];
-songInfo[2] = ["Bones","Bones","Galantis ft. OneRepublic","/andromeda/albums/Bones.jpg","[Single] (2019)"];
-songInfo[3] = ["Clocks","Clocks","Coldplay","/andromeda/albums/Clocks.jpg","[Single] (2002)"];
-songInfo[4] = ["Cocoon","Cocoon","Milky Chance","/andromeda/albums/Cocoon.jpg","[Single] (2016)"];
-songInfo[5] = ["demons","Demons","Imagine Dragons","/andromeda/albums/Night_Visions.jpg","Night Visions (2013)"];
-songInfo[6] = ["believer","Believer","Imagine Dragons","/andromeda/albums/believer.jpg","[Single] (2017)"];
-songInfo[7] = ["Flashed_Junk_Mind","Flashed Junk Mind","Milky Chance","/andromeda/albums/Sadnecessary.jpg","Sadnecessary (2013)"];
-songInfo[8] = ["Hey_Brother","Hey Brother","Avicii","/andromeda/albums/Hey_Brother.jpg","[Single] (2013)"];
-songInfo[9] = ["Ho_Hey","Ho Hey","The Lumineers","/andromeda/albums/The_Lumineers.jpeg","The Lumineers (2012)"];
-songInfo[10] = ["I_Need_a_Dollar","I Need a Dollar","Aloe Blacc","/andromeda/albums/I_Need_a_Dollar.jpg","[Single] (2010)"];
-songInfo[11] = ["Machine","Machine","Imagine Dragons","/andromeda/albums/Machine.jpg","[Single] (2018)"];
-songInfo[12] = ["Natural","Natural","Imagine Dragons","/andromeda/albums/Natural.jpg","[Single] (2018)"];
-songInfo[13] = ["Only","Only","Imagine Dragons","/andromeda/albums/Origins.jpg","Origins (2018)"];
-songInfo[14] = ["Ophelia","Ophelia","The Lumineers","/andromeda/albums/Ophelia.jpg","[Single] (2016)"];
-songInfo[15] = ["Paradise","Paradise","Coldplay","/andromeda/albums/Paradise.jpg","[Single] (2011)"];
-songInfo[16] = ["Pompeii","Pompeii","Bastille","/andromeda/albums/Pompeii.jpg","[Single] (2013)"];
-songInfo[17] = ["Renegades","Renegades","X Ambassadors","/andromeda/albums/Renegades.jpg","[Single] (2015)"];
-songInfo[18] = ["Riptide","Riptide","Vance Joy","/andromeda/albums/Riptide.jpg","[Single] (2013)"];
-songInfo[19] = ["Stolen_Dance","Stolen Dance","Milky Chance","/andromeda/albums/Stolen_Dance.jpg","[Single] (2012)"];
-songInfo[20] = ["Stolen_Dance_Flic_Flac","Stolen Dance (Flic Flac Edit)","Milky Chance","/andromeda/albums/Stolen_Dance_Flic_Flac.jfif","[Single] (2013)"];
-songInfo[21] = ["Stubborn_Love","Stubborn Love","The Lumineers","/andromeda/albums/The_Lumineers.jpeg","The Lumineers (2012)"];
-songInfo[22] = ["The_Nights","The Nights","Avicii","/andromeda/albums/The_Nights.jpg","[Single] (2014)"];
-songInfo[23] = ["Viva_La_Vida","Viva la Vida","Coldplay","/andromeda/albums/Viva_la_Vida.png","Viva la Vida (2008)"];
-songInfo[24] = ["Waiting_for_Love","Waiting for Love","Avicii","/andromeda/albums/Waiting_for_Love.jpg","[Single] (2015)"];
-songInfo[25] = ["Wish_I_Knew_You","Wish I Knew You","The Revivalists","/andromeda/albums/Men_Amongst_Mountains.jpg","Men Amongst Mountains (2016)"];
-songInfo[26] = ["Clouds","Clouds","Milky Chance","/andromeda/albums/Blossom.jpeg","Blossom (2017)"];
-songInfo[27] = ["ibetmylife","I Bet My Life","Imagine Dragons","/andromeda/albums/ibetmylife.jpg","[Single] (2014)"];
-songInfo[28] = ["All_The_Right_Moves","All the Right Moves","OneRepublic","/andromeda/albums/All_The_Right_Moves.jpg","[Single (2009)"];
-songInfo[29] = ["Apologize","Apologize","OneRpublic","/andromeda/albums/Apologize.jpg","[Single] (2006)"];
-songInfo[30] = ["Bleeding_Out","Bleeding Out","Imagine Dragons","/andromeda/albums/Night_Visions.jpg","Night Visions (2012)"];
-songInfo[31] = ["Born_To_Be_Yours","Born to be Yours","Kygo & Imagine Dragons","/andromeda/albums/Born_To_Be_Yours.jpg","[Single] (2018)"];
-songInfo[32] = ["Cleopatra","Cleopatra","The Lumineers","/andromeda/albums/Cleopatra.jpg","[Single] (2016)"];
-songInfo[33] = ["Counting_Stars","Counting Stars","OneRepublic","/andromeda/albums/Counting_Stars.png","[Single] (2013)"];
-songInfo[34] = ["Dreamer","Dreamer","Axwell /\\ Ingrosso","/andromeda/albums/More_Than_You_Know.jpg","More Than You Know (2017)"];
-songInfo[35] = ["Gloria","Gloria","The Lumineers","/andromeda/albums/Gloria.jpg","[Single] (2019)"];
-songInfo[36] = ["Gone_Gone_Gone","Gone, Gone, Gone","Phillip Phillips","/andromeda/albums/Gone_Gone_Gone.png","[Single] (2013)"];
-songInfo[37] = ["I_Lived","I Lived","OneRepublic","/andromeda/albums/I_Lived.jpg","[Single] (2014)"];
-songInfo[38] = ["Icarus","Icarus","Bastille","/andromeda/albums/Bad_Blood.jpeg","Bad Blood (2014)"];
-songInfo[39] = ["More_Than_You_Know","More Than You Know","Axwell /\\ Ingrosso","/andromeda/albums/More_Than_You_Know.jpg","[Single] (2017)"];
-songInfo[40] = ["One_Foot","One Foot","Walk the Moon","/andromeda/albums/One_Foot.jpg","[Single] (2017)"];
-songInfo[41] = ["Roots","Roots","Imagine Dragons","/andromeda/albums/Roots.jpg","[Single] (2015)"];
-songInfo[42] = ["Shots","Shots","Imagine Dragons","/andromeda/albums/Shots_Broiler.jpg","[Single] (2015)"];
-songInfo[43] = ["Shots_Broiler","Shots (Broiler Remix)","Imagine Dragons","/andromeda/albums/Shots_Broiler.jpg","[Single] (2015)"];
-songInfo[44] = ["Two_High","Two High","Moon Taxi","/andromeda/albums/Two_High.jpg","[Single] (2017)"];
-songInfo[45] = ["Unpack_Your_Heart","Unpack Your Heart","Phillip Phillips","/andromeda/albums/Behind_The_Light.jpg","Behind the Light (2014)"];
-songInfo[46] = ["thunder","Thunder","Imagine Dragon","/andromeda/albums/thunder.jpg","[Single] (2017)"];
-songInfo[47] = ["warriors","Warriors","Imagine Dragons","/andromeda/albums/warriors.jpg","[Single] (2014)"];
-songInfo[48] = ["itstime","It's Time","Imagine Dragons","/andromeda/albums/itstime.jpg","[Single] (2017)"];
-songInfo[49] = ["whateverittakes","Whatever It Takes","Imagine Dragons","/andromeda/albums/whateverittakes.jpg","[Single] (2017)"];
-songInfo[50] = ["happier","Happier","Marshmello ft. Bastille","/andromeda/albums/happier.jpg","[Single] (2018)"];
+songInfo[0] = [];
+songInfo[0][0] = ["Bad_Liar","Bad Liar","Imagine Dragons","/andromeda/albums/Bad_Liar.jpg","[Single] (2018)"];
+songInfo[0][1] = ["Blossom","Blossom","Milky Chance","/andromeda/albums/Blossom.jpeg","Blossom (2017)"];
+songInfo[0][2] = ["Bones","Bones","Galantis ft. OneRepublic","/andromeda/albums/Bones.jpg","[Single] (2019)"];
+songInfo[0][3] = ["Clocks","Clocks","Coldplay","/andromeda/albums/Clocks.jpg","[Single] (2002)"];
+songInfo[0][4] = ["Cocoon","Cocoon","Milky Chance","/andromeda/albums/Cocoon.jpg","[Single] (2016)"];
+songInfo[0][5] = ["demons","Demons","Imagine Dragons","/andromeda/albums/Night_Visions.jpg","Night Visions (2013)"];
+songInfo[0][6] = ["believer","Believer","Imagine Dragons","/andromeda/albums/believer.jpg","[Single] (2017)"];
+songInfo[0][7] = ["Flashed_Junk_Mind","Flashed Junk Mind","Milky Chance","/andromeda/albums/Sadnecessary.jpg","Sadnecessary (2013)"];
+songInfo[0][8] = ["Hey_Brother","Hey Brother","Avicii","/andromeda/albums/Hey_Brother.jpg","[Single] (2013)"];
+songInfo[0][9] = ["Ho_Hey","Ho Hey","The Lumineers","/andromeda/albums/The_Lumineers.jpeg","The Lumineers (2012)"];
+songInfo[0][10] = ["I_Need_a_Dollar","I Need a Dollar","Aloe Blacc","/andromeda/albums/I_Need_a_Dollar.jpg","[Single] (2010)"];
+songInfo[0][11] = ["Machine","Machine","Imagine Dragons","/andromeda/albums/Machine.jpg","[Single] (2018)"];
+songInfo[0][12] = ["Natural","Natural","Imagine Dragons","/andromeda/albums/Natural.jpg","[Single] (2018)"];
+songInfo[0][13] = ["Only","Only","Imagine Dragons","/andromeda/albums/Origins.jpg","Origins (2018)"];
+songInfo[0][14] = ["Ophelia","Ophelia","The Lumineers","/andromeda/albums/Ophelia.jpg","[Single] (2016)"];
+songInfo[0][15] = ["Paradise","Paradise","Coldplay","/andromeda/albums/Paradise.jpg","[Single] (2011)"];
+songInfo[0][16] = ["Pompeii","Pompeii","Bastille","/andromeda/albums/Pompeii.jpg","[Single] (2013)"];
+songInfo[0][17] = ["Renegades","Renegades","X Ambassadors","/andromeda/albums/Renegades.jpg","[Single] (2015)"];
+songInfo[0][18] = ["Riptide","Riptide","Vance Joy","/andromeda/albums/Riptide.jpg","[Single] (2013)"];
+songInfo[0][19] = ["Stolen_Dance","Stolen Dance","Milky Chance","/andromeda/albums/Stolen_Dance.jpg","[Single] (2012)"];
+songInfo[0][20] = ["Stolen_Dance_Flic_Flac","Stolen Dance (Flic Flac Edit)","Milky Chance","/andromeda/albums/Stolen_Dance_Flic_Flac.jfif","[Single] (2013)"];
+songInfo[0][21] = ["Stubborn_Love","Stubborn Love","The Lumineers","/andromeda/albums/The_Lumineers.jpeg","The Lumineers (2012)"];
+songInfo[0][22] = ["The_Nights","The Nights","Avicii","/andromeda/albums/The_Nights.jpg","[Single] (2014)"];
+songInfo[0][23] = ["Viva_La_Vida","Viva la Vida","Coldplay","/andromeda/albums/Viva_la_Vida.png","Viva la Vida (2008)"];
+songInfo[0][24] = ["Waiting_for_Love","Waiting for Love","Avicii","/andromeda/albums/Waiting_for_Love.jpg","[Single] (2015)"];
+songInfo[0][25] = ["Wish_I_Knew_You","Wish I Knew You","The Revivalists","/andromeda/albums/Men_Amongst_Mountains.jpg","Men Amongst Mountains (2016)"];
+songInfo[0][26] = ["Clouds","Clouds","Milky Chance","/andromeda/albums/Blossom.jpeg","Blossom (2017)"];
+songInfo[0][27] = ["ibetmylife","I Bet My Life","Imagine Dragons","/andromeda/albums/ibetmylife.jpg","[Single] (2014)"];
+songInfo[0][28] = ["All_The_Right_Moves","All the Right Moves","OneRepublic","/andromeda/albums/All_The_Right_Moves.jpg","[Single (2009)"];
+songInfo[0][29] = ["Apologize","Apologize","OneRpublic","/andromeda/albums/Apologize.jpg","[Single] (2006)"];
+songInfo[0][30] = ["Bleeding_Out","Bleeding Out","Imagine Dragons","/andromeda/albums/Night_Visions.jpg","Night Visions (2012)"];
+songInfo[0][31] = ["Born_To_Be_Yours","Born to be Yours","Kygo & Imagine Dragons","/andromeda/albums/Born_To_Be_Yours.jpg","[Single] (2018)"];
+songInfo[0][32] = ["Cleopatra","Cleopatra","The Lumineers","/andromeda/albums/Cleopatra.jpg","[Single] (2016)"];
+songInfo[0][33] = ["Counting_Stars","Counting Stars","OneRepublic","/andromeda/albums/Counting_Stars.png","[Single] (2013)"];
+songInfo[0][34] = ["Dreamer","Dreamer","Axwell /\\ Ingrosso","/andromeda/albums/More_Than_You_Know.jpg","More Than You Know (2017)"];
+songInfo[0][35] = ["Gloria","Gloria","The Lumineers","/andromeda/albums/Gloria.jpg","[Single] (2019)"];
+songInfo[0][36] = ["Gone_Gone_Gone","Gone, Gone, Gone","Phillip Phillips","/andromeda/albums/Gone_Gone_Gone.png","[Single] (2013)"];
+songInfo[0][37] = ["I_Lived","I Lived","OneRepublic","/andromeda/albums/I_Lived.jpg","[Single] (2014)"];
+songInfo[0][38] = ["Icarus","Icarus","Bastille","/andromeda/albums/Bad_Blood.jpeg","Bad Blood (2014)"];
+songInfo[0][39] = ["More_Than_You_Know","More Than You Know","Axwell /\\ Ingrosso","/andromeda/albums/More_Than_You_Know.jpg","[Single] (2017)"];
+songInfo[0][40] = ["One_Foot","One Foot","Walk the Moon","/andromeda/albums/One_Foot.jpg","[Single] (2017)"];
+songInfo[0][41] = ["Roots","Roots","Imagine Dragons","/andromeda/albums/Roots.jpg","[Single] (2015)"];
+songInfo[0][42] = ["Shots","Shots","Imagine Dragons","/andromeda/albums/Shots_Broiler.jpg","[Single] (2015)"];
+songInfo[0][43] = ["Shots_Broiler","Shots (Broiler Remix)","Imagine Dragons","/andromeda/albums/Shots_Broiler.jpg","[Single] (2015)"];
+songInfo[0][44] = ["Two_High","Two High","Moon Taxi","/andromeda/albums/Two_High.jpg","[Single] (2017)"];
+songInfo[0][45] = ["Unpack_Your_Heart","Unpack Your Heart","Phillip Phillips","/andromeda/albums/Behind_The_Light.jpg","Behind the Light (2014)"];
+songInfo[0][46] = ["thunder","Thunder","Imagine Dragon","/andromeda/albums/thunder.jpg","[Single] (2017)"];
+songInfo[0][47] = ["warriors","Warriors","Imagine Dragons","/andromeda/albums/warriors.jpg","[Single] (2014)"];
+songInfo[0][48] = ["itstime","It's Time","Imagine Dragons","/andromeda/albums/itstime.jpg","[Single] (2017)"];
+songInfo[0][49] = ["whateverittakes","Whatever It Takes","Imagine Dragons","/andromeda/albums/whateverittakes.jpg","[Single] (2017)"];
+songInfo[0][50] = ["happier","Happier","Marshmello ft. Bastille","/andromeda/albums/happier.jpg","[Single] (2018)"];
+
+songInfo[1] = [];
+songInfo[1][0] = ["believe","Believe","Josh Groban","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
+songInfo[1][1] = ["comestotown","When Christmas Comes to Town","Meagan Moore and Matthew Hall","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
+songInfo[1][2] = ["hotchocolate","Hot Chocolate","Tom Hanks","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
+songInfo[1][3] = ["polarexpress","The Polar Express","Tom Hanks","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
+songInfo[1][4] = ["rockin","Rockin' on Top of the World","Steven Tyler","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
+songInfo[1][5] = ["spirit","Spirit of the Season","Alan Silvestri","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
+songInfo[1][6] = ["suite","Suite from the Polar Express","Alan Silvestri","/andromeda/albums/polarexpress.jpg","The Polar Express (2004)"];
 
 var plays = -1;
 var songHistory = [];
@@ -270,15 +270,15 @@ function playSong() {
  going = true;
  document.getElementById("pp").src = "/andromeda/assets/pause.png";
  var elem = document.getElementById("masterAudio");
- elem.src = "https://hailtothevictors.github.io/andromeda/AndromedaX/" + songInfo[num][0] + ".mp3";
- $("#songName").text(songInfo[num][1]);
- $("#songX").text(songInfo[num][2] + " | " + songInfo[num][4]);
+ elem.src = "https://hailtothevictors.github.io/andromeda/AndromedaX/" + songInfo[track][num][0] + ".mp3";
+ $("#songName").text(songInfo[track][num][1]);
+ $("#songX").text(songInfo[track][num][2] + " | " + songInfo[track][num][4]);
  elem.play();
  songHistory.push(num);
  plays++;
  going = true;
- document.getElementById("albumPhy").src = songInfo[num][3];
- if (supported.includes(num) == true) {
+ document.getElementById("albumPhy").src = songInfo[track][num][3];
+ if (supported.includes(num) == true && track == 0) {
   $("#song_n2").text(lyrics[num][0]);
   $("#song_n1").text(lyrics[num][1]);
   $("#song").text(lyrics[num][2]);
@@ -291,9 +291,9 @@ function playSong() {
   $("#song_p1").text("-");
   $("#song_p2").text("-");
  }
- var titlex = songInfo[num][1];
- var artistx = songInfo[num][2];
- var albumx = songInfo[num][4]
+ var titlex = songInfo[track][num][1];
+ var artistx = songInfo[track][num][2];
+ var albumx = songInfo[track][num][4]
  navigator.mediaSession.metadata = new MediaMetadata({
   title: titlex,
   artist: artistx,

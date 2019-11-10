@@ -126,7 +126,7 @@ lyrics[50] = ["-","-","Lately, I've Been, I've Been Thinking","I Want You To Be 
 
 var rep = 0;
 setInterval(function(){ 
- if (supported.includes(num) == true) {
+ if (supported.includes(num) == true && track == 0) {
   var cascade = timestamps[num][rep];
   var ahora = document.getElementById("masterAudio").currentTime;
   if (ahora > cascade) {

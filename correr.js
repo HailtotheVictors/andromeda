@@ -143,6 +143,11 @@ setInterval(function(){
 //Quinn - 0 | Winter - 1
 var track = 0;
 function changeDesign(x) {
+ var diff = false;
+ if (x !== track) {
+  diff = true;
+ }
+ 
  if (x == 0) {
   // to Quinn
   track = 0;
@@ -166,11 +171,9 @@ function changeDesign(x) {
  $("#songDes").delay(200).fadeIn(200);
  showing = "controls";
 
- if (x !== track) {
-  console.log('c');
+ if (diff == true) {
   randomSong()
  }
- console.log(x + "|" + track);
 }
 
 var songInfo = [];

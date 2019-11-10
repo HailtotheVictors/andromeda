@@ -143,6 +143,10 @@ setInterval(function(){
 //Quinn - 0 | Winter - 1
 var track = 0;
 function changeDesign(x) {
+ if (x !== track) {
+  randomSong()
+ }
+ 
  if (x == 0) {
   // to Quinn
   track = 0;
@@ -270,7 +274,11 @@ function playSong() {
  going = true;
  document.getElementById("pp").src = "/andromeda/assets/pause.png";
  var elem = document.getElementById("masterAudio");
- elem.src = "https://hailtothevictors.github.io/andromeda/AndromedaX/" + songInfo[track][num][0] + ".mp3";
+ if (track == 0) {
+  elem.src = "https://hailtothevictors.github.io/andromeda/AndromedaX/" + songInfo[0][num][0] + ".mp3";
+ } else {
+  elem.src = "https://hailtothevictors.github.io/andromeda/PolarExpress/" + songInfo[0][num][0] + ".mp3";
+ }
  $("#songName").text(songInfo[track][num][1]);
  $("#songX").text(songInfo[track][num][2] + " | " + songInfo[track][num][4]);
  elem.play();

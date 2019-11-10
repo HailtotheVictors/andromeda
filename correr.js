@@ -243,7 +243,7 @@ var going = true;
 function randomSong() {
  var totalSongs = songInfo[track].length;
  var pseudo = Math.floor(Math.random() * totalSongs);
- while (pseudo == songHistory[track][songHistory.length - 1] || pseudo == songHistory[track][songHistory.length - 2] || pseudo == songHistory[track][songHistory.length - 3]) {
+ while (pseudo == songHistory[songHistory.length - 1] || pseudo == songHistory[songHistory.length - 2] || pseudo == songHistory[songHistory.length - 3]) {
   pseudo = Math.floor(Math.random() * totalSongs);
  }
  num = pseudo;

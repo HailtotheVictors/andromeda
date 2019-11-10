@@ -143,10 +143,6 @@ setInterval(function(){
 //Quinn - 0 | Winter - 1
 var track = 0;
 function changeDesign(x) {
- if (x !== track) {
-  randomSong()
- }
- 
  if (x == 0) {
   // to Quinn
   track = 0;
@@ -169,6 +165,11 @@ function changeDesign(x) {
  $("#trackCont").fadeOut(200);
  $("#songDes").delay(200).fadeIn(200);
  showing = "controls";
+ 
+ function changeDesign(x) {
+ if (x !== track) {
+  randomSong()
+ }
 }
 
 var songInfo = [];
@@ -277,7 +278,7 @@ function playSong() {
  if (track == 0) {
   elem.src = "https://hailtothevictors.github.io/andromeda/AndromedaX/" + songInfo[0][num][0] + ".mp3";
  } else {
-  elem.src = "https://hailtothevictors.github.io/andromeda/PolarExpress/" + songInfo[0][num][0] + ".mp3";
+  elem.src = "https://hailtothevictors.github.io/andromeda/PolarExpress/" + songInfo[1][num][0] + ".mp3";
  }
  $("#songName").text(songInfo[track][num][1]);
  $("#songX").text(songInfo[track][num][2] + " | " + songInfo[track][num][4]);

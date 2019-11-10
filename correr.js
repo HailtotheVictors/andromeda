@@ -237,7 +237,8 @@ songInfo[1][2] = ["hotchocolate","Hot Chocolate","Tom Hanks","/andromeda/albums/
 songInfo[1][3] = ["polarexpress","The Polar Express","Tom Hanks","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
 songInfo[1][4] = ["rockin","Rockin' on Top of the World","Steven Tyler","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
 songInfo[1][5] = ["spirit","Spirit of the Season","Alan Silvestri","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
-songInfo[1][6] = ["suite","Suite from the Polar Express","Alan Silvestri","/andromeda/albums/polarexpress.jpg","The Polar Express (2004)"];
+songInfo[1][6] = ["suite","Suite from the Polar Express","Alan Silvestri","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
+songInfo[1][7] = ["christmaspopsongs","5 Christmas Pop Songs","Jared Halley","/andromeda/albums/halley.png","[Single] (2016)"]
 
 var plays = -1;
 var songHistory = [];

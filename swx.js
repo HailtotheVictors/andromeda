@@ -1,6 +1,6 @@
-const PRECACHE = 'andromeda-cache-v74';
+const PRECACHE = 'andromeda-cache-v75';
 const RUNTIME = 'runtime';
-const andro_version = 'V74';
+const andro_version = 'V75';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
@@ -13,7 +13,8 @@ const PRECACHE_URLS = [
   '/andromeda/assets/restart.png',
   '/andromeda/assets/menu.png',
   '/andromeda/assets/music.png',
-  '/andromeda/assets/delete-sign.png'
+  '/andromeda/assets/delete-sign.png',
+  '/andromeda/slower_winter.gif'
 ];
 
 // The install handler takes care of precaching the resources we always need.

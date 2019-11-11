@@ -291,9 +291,11 @@ function playSong() {
  http.open('HEAD', songSrc, false);
  http.send();
  if (http.status == 404) {
+   console.log('404');
    randomSong()
  } else {
    elem.src = songSrc;
+   console.log('Good to go');
  }
  $("#songName").text(songInfo[track][num][1]);
  $("#songX").text(songInfo[track][num][2] + " | " + songInfo[track][num][4]);

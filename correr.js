@@ -281,10 +281,19 @@ function playSong() {
  going = true;
  document.getElementById("pp").src = "/andromeda/assets/pause.png";
  var elem = document.getElementById("masterAudio");
+ var songSrc;
  if (track == 0) {
-  elem.src = "https://hailtothevictors.github.io/andromeda/AndromedaX/" + songInfo[0][num][0] + ".mp3";
+  songSrc = "https://hailtothevictors.github.io/andromeda/AndromedaX/" + songInfo[0][num][0] + ".mp3";
  } else {
-  elem.src = "https://hailtothevictors.github.io/andromeda/PolarExpress/" + songInfo[1][num][0] + ".mp3";
+  songSrc = "https://hailtothevictors.github.io/andromeda/PolarExpress/" + songInfo[1][num][0] + ".mp3";
+ }
+ var http = new XMLHttpRequest();
+ http.open('HEAD', songSrc, false);
+ http.send();
+ if (http.status == 404) {
+   randomSong()
+ } else {
+   elem.src = songSrc;
  }
  $("#songName").text(songInfo[track][num][1]);
  $("#songX").text(songInfo[track][num][2] + " | " + songInfo[track][num][4]);

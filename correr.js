@@ -253,14 +253,12 @@ function randomSong() {
   pseudo = Math.floor(Math.random() * totalSongs);
  }
  num = pseudo;
- console.log(num);
  playSong()
 }
 
 function prevSong() {
  if (plays !== 0) {
   var lastSong = songHistory[plays - 1];
-  console.log("Last: " + lastSong);
   num = lastSong;
   playSong()
  }
@@ -295,7 +293,6 @@ function playSong() {
    randomSong()
  } else {
    elem.src = songSrc;
-   console.log('Good to go');
  }
  $("#songName").text(songInfo[track][num][1]);
  $("#songX").text(songInfo[track][num][2] + " | " + songInfo[track][num][4]);
@@ -350,12 +347,6 @@ function playPause() {
 }
 
 function rewind() {
- /* going = true;
- document.getElementById("pp").src = "/andromeda/assets/pause.png";
- var elem = document.getElementById("masterAudio");
- elem.currentTime = 0;
- elem.play();
- reps = 0; */
  document.getElementById("masterAudio").currentTime = 0;
  specSong(num)
 }
@@ -385,7 +376,6 @@ function toggleTrack() {
   $("#songDes").delay(200).fadeIn(200);
   showing = "controls";
  }
- console.log(showing);
 }
 
 function toggleLyr() {
@@ -402,6 +392,8 @@ function toggleLyr() {
 
 $(window).keypress(function(e) {
  if (e.which === 32) { playPause() }
+ if (e.which === 37) { rewind() }
+ if (e.which === 39) { randomSong() }
 });
 
 navigator.mediaSession.setActionHandler('previoustrack', function() { prevSong() });

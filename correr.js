@@ -285,15 +285,7 @@ function playSong() {
  } else {
   songSrc = "https://hailtothevictors.github.io/andromeda/PolarExpress/" + songInfo[1][num][0] + ".mp3";
  }
- var http = new XMLHttpRequest();
- http.open('HEAD', songSrc, false);
- http.send();
- if (http.status == 404) {
-   console.log('404');
-   randomSong()
- } else {
-   elem.src = songSrc;
- }
+ elem.src = songSrc;
  $("#songName").text(songInfo[track][num][1]);
  $("#songX").text(songInfo[track][num][2] + " | " + songInfo[track][num][4]);
  elem.play();

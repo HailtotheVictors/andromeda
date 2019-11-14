@@ -264,8 +264,10 @@ function prevSong() {
  }
 }
 
-function specSong(x) {
- track = 0;
+function specSong(x,change) {
+ if (change == true) {
+  track = 0;
+ }
  num = x;
  $("#selCont").fadeOut(200);
  $("#songDes").delay(200).fadeIn(200);
@@ -340,7 +342,7 @@ function playPause() {
 
 function rewind() {
  document.getElementById("masterAudio").currentTime = 0;
- specSong(num)
+ specSong(num,false)
 }
 
 var showing = "controls";

@@ -389,6 +389,7 @@ $(window).keypress(function(e) {
  if (e.which === 32) { playPause() }
  if (e.which === 37) { rewind() }
  if (e.which === 39) { randomSong() }
+ console.log(e.which);
 });
 
 navigator.mediaSession.setActionHandler('previoustrack', function() { prevSong() });

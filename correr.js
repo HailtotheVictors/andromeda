@@ -230,6 +230,7 @@ songInfo[0][47] = ["warriors","Warriors","Imagine Dragons","/andromeda/albums/wa
 songInfo[0][48] = ["itstime","It's Time","Imagine Dragons","/andromeda/albums/itstime.jpg","[Single] (2017)"];
 songInfo[0][49] = ["whateverittakes","Whatever It Takes","Imagine Dragons","/andromeda/albums/whateverittakes.jpg","[Single] (2017)"];
 songInfo[0][50] = ["happier","Happier","Marshmello ft. Bastille","/andromeda/albums/happier.jpg","[Single] (2018)"];
+songInfo[0][51] = ["betterthanever","Better Than Ever","Flight Facilites ft. Aloe Blacc","/andromeda/albums/better.png","[Single] (2019)"];
 
 songInfo[1] = [];
 songInfo[1][0] = ["believe","Believe","Josh Groban","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];

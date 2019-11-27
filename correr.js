@@ -247,10 +247,11 @@ songInfo[0][44] = ["Two_High","Two High","Moon Taxi","/andromeda/albums/Two_High
 songInfo[0][45] = ["Unpack_Your_Heart","Unpack Your Heart","Phillip Phillips","/andromeda/albums/Behind_The_Light.jpg","Behind the Light (2014)"];
 songInfo[0][46] = ["thunder","Thunder","Imagine Dragon","/andromeda/albums/thunder.jpg","[Single] (2017)"];
 songInfo[0][47] = ["warriors","Warriors","Imagine Dragons","/andromeda/albums/warriors.jpg","[Single] (2014)"];
-songInfo[0][48] = ["itstime","It's Time","Imagine Dragons","/andromeda/albums/itstime.jpg","[Single] (2017)"];
+songInfo[0][48] = ["itstime","It's Time","Imagine Dragons","/andromeda/albums/itstime.jpg","[Single] (2012)"];
 songInfo[0][49] = ["whateverittakes","Whatever It Takes","Imagine Dragons","/andromeda/albums/whateverittakes.jpg","[Single] (2017)"];
 songInfo[0][50] = ["happier","Happier","Marshmello ft. Bastille","/andromeda/albums/happier.jpg","[Single] (2018)"];
 songInfo[0][51] = ["betterthanever","Better Than Ever","Flight Facilites ft. Aloe Blacc","/andromeda/albums/better.png","[Single] (2019)"];
+songInfo[0][52] = ["timeaco","It's Time (Acoustic)","Imagine Dragons","/andromeda/albums/itstime.jpg","[Single] (2012)"];
 
 songInfo[1] = [];
 songInfo[1][0] = ["believe","Believe","Josh Groban","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];

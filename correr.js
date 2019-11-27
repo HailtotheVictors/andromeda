@@ -1,5 +1,3 @@
-//Michigan
-//Wolverines
 var supported = [1,2,4,7,10,17,19,23,50,51];
 var timestamps = [];
 var lyrics = [];
@@ -129,7 +127,7 @@ timestamps[51] = [0.6,5.5,10.3,12.7,15.1,19.5,24.2,28.9,33.8,38.3,39.9,43.1,44.7
 76.5,81.9,86.8,91.3,96.1,101,105.4,107,110.2,111.8,113.4,114.7,116.4,119.6,123.2,125.3,129.8,130.2,134,135.7,137.4,139.1,140.8,
 145.4,148.6,150.1,151.7,153.1,154.9,158.2,161.6];
 
-lyrics[51] = ["-","-","Legs are shaking, hands are aching","Head is pounding, the back is breaking","The more I give, the more they're taking",
+lyrics[51] = ["-","-","-","Legs are shaking, hands are aching","Head is pounding, the back is breaking","The more I give, the more they're taking",
 "I'm broken down, there's no mistaking","There's no time now for goodness sakin'","I'm a simple man, but I'm hard to please",
 "Don't mind you making it hard for me","I don't want to be on my own forever","Alone I'm no good, but when we're together",
 "I'm better than ever","When I'm looking at you I'm better in every way","Better than ever","Got a smile like sunshine",

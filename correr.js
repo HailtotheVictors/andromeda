@@ -159,7 +159,7 @@ setInterval(function(){
   $("#song_p2").text(lyrics[num][rep+4]);
   }
  }
-}, 50);
+}, 100);
 
 //Quinn - 0 | Winter - 1
 var track = 0;

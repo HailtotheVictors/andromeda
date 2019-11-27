@@ -123,11 +123,11 @@ lyrics[50] = ["-","-","Lately, I've Been, I've Been Thinking","I Want You To Be 
 "Know That Means I'll Have To Leave","[Music]","Know That Means I'll Have To Leave","Lately I've Been, I've Been Thinking",
 "I Want You To Be Happier, I Want You To Be Happier","So I'll Goo","I'll Goooo","I Will Go Go Goo"];
 
-timestamps[51] = [0.6,5.5,10.3,12.7,15.1,19.5,24.2,28.9,33.8,38.3,39.9,43.1,44.7,46.1,47.5,49.3,52.5,56.3,58.5,60.3,61.4,64.2,66.9,72.6,
+timestamps[51] = [5.5,10.3,12.7,15.1,19.5,24.2,28.9,33.8,38.3,39.9,43.1,44.7,46.1,47.5,49.3,52.5,56.3,58.5,60.3,61.4,64.2,66.9,72.6,
 76.5,81.9,86.8,91.3,96.1,101,105.4,107,110.2,111.8,113.4,114.7,116.4,119.6,123.2,125.3,129.8,130.2,134,135.7,137.4,139.1,140.8,
 145.4,148.6,150.1,151.7,153.1,154.9,158.2,161.6];
 
-lyrics[51] = ["-","-","-","Legs are shaking, hands are aching","Head is pounding, the back is breaking","The more I give, the more they're taking",
+lyrics[51] = ["-","-","Legs are shaking, hands are aching","Head is pounding, the back is breaking","The more I give, the more they're taking",
 "I'm broken down, there's no mistaking","There's no time now for goodness sakin'","I'm a simple man, but I'm hard to please",
 "Don't mind you making it hard for me","I don't want to be on my own forever","Alone I'm no good, but when we're together",
 "I'm better than ever","When I'm looking at you I'm better in every way","Better than ever","Got a smile like sunshine",

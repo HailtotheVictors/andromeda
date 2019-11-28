@@ -52,7 +52,7 @@ lyrics[7] = ["-","-","[Music]","When we were young souls","On the junk-yard","No
 "Focused on what you feel","Just when you were calling her love that day","And we were bound to the citylife","Flashlights when we're falling into the night",
 "Focused on what you feel","Just when you were calling her love that day","-","-"];
 
-timestamps[10] = [10.5,15,16,20,21,25,31,35,36,40.,41.5,45.5,51.5,55.5,56.5,62,67.5,72,79,83,84,88,89,93,99,103,104,108,109,103.5,120,125,129.5,137,
+timestamps[10] = [10.5,15,16,20,21,25,31,35,36,40.,41.5,45.5,51.5,55.5,56.5,62,67.5,72,79,83,84,88,89,93,99,103,104,108,109,113.5,120,125,129.5,137,
 141.5,146.5,151,153.5,156.5,160.5,161.5,165.5,166.5,170.5,175.5,176.5,180.5,181.5,185.5,186.5,190.5,195.5,196.5,200.5,201.5,205.5,206.5,211,215.5,218,220.5,223.5,225.5];
 lyrics[10] = ["-","-","[Music]","I need a dollar dollar, a dollar is what I need","Hey hey","Well I need a dollar dollar, a dollar is what I need","Hey hey","And I said I need dollar dollar, a dollar is what I need",
 "And if I share with you my story would you share your dollar with me","Bad times are comin' and I reap what I don't sow","Hey hey","Well let me tell you somethin' all that glitters ain't gold",

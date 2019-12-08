@@ -263,7 +263,7 @@ songInfo[1][4] = ["rockin","Rockin' on Top of the World","Steven Tyler","/androm
 songInfo[1][5] = ["spirit","Spirit of the Season","Alan Silvestri","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
 songInfo[1][6] = ["suite","Suite from the Polar Express","Alan Silvestri","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
 songInfo[1][7] = ["christmaspopsongs","5 Christmas Pop Songs","Jared Halley","/andromeda/albums/halley.png","[Single] (2016)"]
-songInfo[1][8] = ["carolofthebells","Carol of the Bells","Mykola Leontovych","/andromeda/albums/bells.png","1919"];
+songInfo[1][8] = ["carolofthebells","Carol of the Bells","Mykola Leontovych","/andromeda/albums/bells.jpg","1919"];
 
 var plays = -1;
 var songHistory = [];

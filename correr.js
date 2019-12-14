@@ -1,4 +1,3 @@
-//Michigan
 var supported = [1,2,4,7,10,17,19,23,50];
 var timestamps = [];
 var lyrics = [];
@@ -264,6 +263,7 @@ songInfo[1][5] = ["spirit","Spirit of the Season","Alan Silvestri","/andromeda/a
 songInfo[1][6] = ["suite","Suite from the Polar Express","Alan Silvestri","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];
 songInfo[1][7] = ["christmaspopsongs","5 Christmas Pop Songs","Jared Halley","/andromeda/albums/halley.png","[Single] (2016)"]
 songInfo[1][8] = ["carolofthebells","Carol of the Bells","Mykola Leontovych","/andromeda/albums/bells.jpg","1919"];
+songInfo[1][9] = ["sarajevo","Christmas Eve / Sarajevo 12-24","Trans-Siberian Orchestra","/andromeda/albums/sara.jpg","Christmas Eve and Other Stories (1996)"];
 
 var plays = -1;
 var songHistory = [];

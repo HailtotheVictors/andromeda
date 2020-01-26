@@ -442,7 +442,6 @@ function startDictation() {
         recognition.start();
 
         recognition.onresult = function (e) {
-			document.getElementById('transcript').value = e.results[0][0].transcript;
 			action(e.results[0][0].transcript.toLowerCase().replace(/\s/g, ''));
             recognition.stop();
         };

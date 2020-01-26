@@ -431,3 +431,33 @@ setInterval(function(){
   randomSong()
  }
 }, 50);
+
+function startDictation() {
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+        var recognition = new webkitSpeechRecognition();
+
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = "en-US";
+        recognition.start();
+
+        recognition.onresult = function (e) {
+			document.getElementById('transcript').value = e.results[0][0].transcript;
+			action(e.results[0][0].transcript.toLowerCase().replace(/\s/g, ''));
+            recognition.stop();
+        };
+        recognition.onerror = function(e) {
+			recognition.stop();
+        }
+    }
+}
+
+function action(speech) {
+	var start = speech.indexOf('andromeda');
+	console.log(start);
+	var command = speech.substring(start + 9, speech.length);
+	console.log(command);
+	if (command == "play" || command == "start" || command == "pause" || command == "stop") {
+		playPause();
+	}
+}

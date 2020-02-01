@@ -253,6 +253,7 @@ songInfo[0][50] = ["happier","Happier","Marshmello ft. Bastille","/andromeda/alb
 songInfo[0][51] = ["betterthanever","Better Than Ever","Flight Facilites ft. Aloe Blacc","/andromeda/albums/better.png","[Single] (2019)"];
 songInfo[0][52] = ["timeaco","It's Time (Acoustic)","Imagine Dragons","/andromeda/albums/itstime.jpg","[Single] (2012)"];
 songInfo[0][53] = ["bustthistown","Bust This Town","Stereophonics","/andromeda/albums/kind.png","Kind (2019)"];
+songInfo[0][54] = ["wakemeup","Wake Me Up","Avicii","/andromeda/albums/wakemeupalbum.png","[Single] (2013)"];
 
 songInfo[1] = [];
 songInfo[1][0] = ["believe","Believe","Josh Groban","/andromeda/albums/polarexpress.jpg","from The Polar Express (2004)"];

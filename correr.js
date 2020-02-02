@@ -1,4 +1,4 @@
-var supported = [1,2,4,7,10,17,19,23,50];
+var supported = [1,2,4,7,10,17,19,50];
 var timestamps = [];
 var lyrics = [];
 timestamps[1] = [27,33,41,49,58.5,65,71,79,87,95.5,106,121,129,137.5,145,154.5,161,167,175,183,191,202.5,219,227,240,247];
@@ -91,18 +91,6 @@ lyrics[19] = ["-","-","[Music]","I want you by my side","So that I never feel al
 "And I want you","We can bring it on the floor","You've never danced like this before","We don't talk about it","Dancin' on do the boogie all night long",
 "Stoned in paradise, shouldn't talk about it","And I want you","We can bring it on the floor","You've never danced like this before",
 "We don't talk about it","Dancin' on do the boogie all night long","Stoned in paradise, shouldn't talk about it","Shouldn't talk about it","[Music]","-","-"];
-
-timestamps[23] = [13,17,19.5,24,41,45,48,52,55,59,61.5,66,69.5,73,76.5,80,83.5,87,93.5,110,114.5,117,121,124.5,128.5,131,135.5,139,142.5,146,150,
-153,156.5,159.5,163,179.5,195,198.5,202,205.5,209,213,215.5,218.5];
-lyrics[23] = ["-","-","[Music]","I used to rule the world","Seas would rise when I gave the word","Now in the morning, I sleep alone","Sweep the streets I used to own","I used to roll the dice",
-"Feel the fear in my enemy's eyes","Listen as the crowd would sing","Now the old king is dead! Long live the king!","One minute I held the key","Next the walls were closed on me",
-"And I discovered that my castles stand","Upon pillars of salt and pillars of sand","I hear Jerusalem bells are ringing","Roman Cavalry choirs are singing","Be my mirror, my sword and shield",
-"My missionaries in a foreign field","For some reason I can't explain","Once you go there was never, never a honest word","And that was when I ruled the world","It was a wicked and wild wind",
-"Blew down the doors to let me in","Shattered windows and the sound of drums","People couldn't believe what I'd become","Revolutionaries wait","For my head on a silver plate",
-"Just a puppet on a lonely string","Oh, who would ever want to be king?","I hear Jerusalem bells are ringing","Roman Calvary choirs are singing","Be my mirror, my sword and shield",
-"My missionaries in a foreign field","For some reason I can't explain","I know Saint Peter won't call my name","Never an honest word","But that was when I ruled the world",
-"Oh, oh, oh, oh, oh","I hear Jerusalem bells are ringing","Roman Calvary choirs are singing","Be my mirror, my sword and shield","My missionaries in a foreign field",
-"For some reason I can't explain","I know Saint Peter won't call my name","Never an honest word","But that was when I ruled the world","-","-"];
 
 timestamps[50] = [7.28,12.6,14.66,17.04,18.2,22.04,24.02,26.12,27.96,31.56,35.66,38.62,42.34,45.64,48.68,51.76,58.22,60.68,64.98,70.38,72.24,74,77.92,79.84,
 81.7,84,85.8,90.06,93.6,95.88,99.4,103.34,105.94,109.78,115.68,119.28,122.58,128.22,130.68,133.12,137.48,140.4,142.58,148,151.42,156.48,
@@ -222,7 +210,7 @@ songInfo[0][19] = ["Stolen_Dance","Stolen Dance","Milky Chance","/andromeda/albu
 songInfo[0][20] = ["Stolen_Dance_Flic_Flac","Stolen Dance (Flic Flac Edit)","Milky Chance","/andromeda/albums/Stolen_Dance_Flic_Flac.jfif","[Single] (2013)"];
 songInfo[0][21] = ["Stubborn_Love","Stubborn Love","The Lumineers","/andromeda/albums/The_Lumineers.jpeg","The Lumineers (2012)"];
 songInfo[0][22] = ["The_Nights","The Nights","Avicii","/andromeda/albums/The_Nights.jpg","[Single] (2014)"];
-songInfo[0][23] = ["Viva_La_Vida","Viva la Vida","Coldplay","/andromeda/albums/Viva_la_Vida.png","Viva la Vida (2008)"];
+songInfo[0][23] = ["westcoast","West Coast","Imagine Dragons","/andromeda/albums/Origins.jpg","Origins (2018)"];
 songInfo[0][24] = ["Waiting_for_Love","Waiting for Love","Avicii","/andromeda/albums/Waiting_for_Love.jpg","[Single] (2015)"];
 songInfo[0][25] = ["Wish_I_Knew_You","Wish I Knew You","The Revivalists","/andromeda/albums/Men_Amongst_Mountains.jpg","Men Amongst Mountains (2016)"];
 songInfo[0][26] = ["Clouds","Clouds","Milky Chance","/andromeda/albums/Blossom.jpeg","Blossom (2017)"];
@@ -231,12 +219,12 @@ songInfo[0][28] = ["ego","Ego","Milky Chance","/andromeda/albums/Blossom.jpeg","
 songInfo[0][29] = ["polaroid","Polaroid","Imagine Dragons","/andromeda/albums/smokemirrors.jpg","Smoke + Mirrors (2015)"];
 songInfo[0][30] = ["Bleeding_Out","Bleeding Out","Imagine Dragons","/andromeda/albums/Night_Visions.jpg","Night Visions (2012)"];
 songInfo[0][31] = ["Born_To_Be_Yours","Born to be Yours","Kygo & Imagine Dragons","/andromeda/albums/Born_To_Be_Yours.jpg","[Single] (2018)"];
-songInfo[0][32] = ["Cleopatra","Cleopatra","The Lumineers","/andromeda/albums/Cleopatra.jpg","[Single] (2016)"];
+songInfo[0][32] = ["boomerang","Boomerang","Imagine Dragons","/andromeda/albums/Origins.jpg","Origins (2018)"];
 songInfo[0][33] = ["levels","Levels","Avicii","/andromeda/albums/levelsremix.jpg","[Single] (2011)"];
 songInfo[0][34] = ["Dreamer","Dreamer","Axwell /\\ Ingrosso","/andromeda/albums/More_Than_You_Know.jpg","More Than You Know (2017)"];
 songInfo[0][35] = ["Gloria","Gloria","The Lumineers","/andromeda/albums/Gloria.jpg","[Single] (2019)"];
 songInfo[0][36] = ["goodlife","Good Life","OneRepublic","/andromeda/albums/wakingupblue.jpg","Waking Up (2009)"];
-songInfo[0][37] = ["I_Lived","I Lived","OneRepublic","/andromeda/albums/I_Lived.jpg","[Single] (2014)"];
+songInfo[0][37] = ["coolout","Cool Out","Imagine Dragons","/andromeda/albums/Origins.jpg","Origins (2018)"];
 songInfo[0][38] = ["Icarus","Icarus","Bastille","/andromeda/albums/Bad_Blood.jpeg","Bad Blood (2014)"];
 songInfo[0][39] = ["More_Than_You_Know","More Than You Know","Axwell /\\ Ingrosso","/andromeda/albums/More_Than_You_Know.jpg","[Single] (2017)"];
 songInfo[0][40] = ["One_Foot","One Foot","Walk the Moon","/andromeda/albums/One_Foot.jpg","[Single] (2017)"];
@@ -244,7 +232,7 @@ songInfo[0][41] = ["Roots","Roots","Imagine Dragons","/andromeda/albums/Roots.jp
 songInfo[0][42] = ["Shots","Shots","Imagine Dragons","/andromeda/albums/Shots_Broiler.jpg","[Single] (2015)"];
 songInfo[0][43] = ["Shots_Broiler","Shots (Broiler Remix)","Imagine Dragons","/andromeda/albums/Shots_Broiler.jpg","[Single] (2015)"];
 songInfo[0][44] = ["Two_High","Two High","Moon Taxi","/andromeda/albums/Two_High.jpg","[Single] (2017)"];
-songInfo[0][45] = ["Unpack_Your_Heart","Unpack Your Heart","Phillip Phillips","/andromeda/albums/Behind_The_Light.jpg","Behind the Light (2014)"];
+songInfo[0][45] = ["riseup","Rise Up","Imagine Dragons","/andromeda/albums/evolve.jpg","Evolve (2017)"];
 songInfo[0][46] = ["thunder","Thunder","Imagine Dragon","/andromeda/albums/thunder.jpg","[Single] (2017)"];
 songInfo[0][47] = ["warriors","Warriors","Imagine Dragons","/andromeda/albums/warriors.jpg","[Single] (2014)"];
 songInfo[0][48] = ["itstime","It's Time","Imagine Dragons","/andromeda/albums/itstime.jpg","[Single] (2012)"];

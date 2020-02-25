@@ -164,6 +164,9 @@ function playSong(song,rewind) {
 		if (audioElem.readyState > 3 && counter < 30) {
 			advanceSlider();
 			audioElem.play();
+			playing = true;
+			playIcon.style.display = "none";
+			pauseIcon.style.display = "block";
 			document.getElementById("album").src = "https://hailtothevictors.github.io/andromeda/" + songInfo[currentPlaylist][song][3];
 			document.getElementById("nameCont").innerHTML = songInfo[currentPlaylist][song][1];
 			document.getElementById("descCont").innerHTML = songInfo[currentPlaylist][song][2] + " | " + songInfo[currentPlaylist][song][4];

@@ -3,7 +3,7 @@ const RUNTIME = 'runtime';
 const andro_version = 'V 3.0.0';
 
 // A list of local resources we always want to be cached.
-const PRECACHE_URLS = [
+/*const PRECACHE_URLS = [
   '/andromeda/index.html',
   '/andromeda/main.css',
   '/andromeda/correr.js',
@@ -15,6 +15,14 @@ const PRECACHE_URLS = [
   '/andromeda/assets/music.png',
   '/andromeda/assets/delete-sign.png',
   '/andromeda/slower_winter.gif'
+];*/
+
+const PRECACHE_URLS = [
+  '/andromeda/index.html',
+  '/andromeda/styles.css',
+  '/andromeda/script.js',
+  '/andromeda/lyrics.js',
+  '/andromeda/song.js'
 ];
 
 // The install handler takes care of precaching the resources we always need.

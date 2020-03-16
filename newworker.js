@@ -1,4 +1,4 @@
-const PRECACHE = 'andromedav2-cache-v0';
+const PRECACHE = 'andromedav2-cache-v1';
 const RUNTIME = 'runtime';
 const andro_version = 'V 3.0.0';
 

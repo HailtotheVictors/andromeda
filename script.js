@@ -239,6 +239,8 @@ function advanceSlider() {
 			clearInterval(sliderRun);
 		}
 		songDisplay[0].innerHTML = toMins(currentTime);
+		console.log("currentTime:adj.::" + currentTime + ":" + Math.round(currentTime));
+		console.log("runTime:adj.::" + runTime + ":" + String(runTime - 0.5));
 	}, 50);
 }
 

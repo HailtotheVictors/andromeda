@@ -1,4 +1,4 @@
-var version = "V 3.5.0";
+var version = "V 3.6.0";
 var playing = false;
 var currentPlaylist = 0;
 var sliderRun;
@@ -234,13 +234,14 @@ function advanceSlider() {
 			currentTime = player.getCurrentTime();
 		}
 		rangeElem.value = currentTime / runTime * 100;
-		if (Math.round(currentTime) >= (runTime - 0.5)) {
+		if (youtube == true && Math.round(currentTime) >= (runTime - 0.5)) {
+			randomSong();
+			clearInterval(sliderRun);
+		} else if (youtube == false && currentTime == runTime) {
 			randomSong();
 			clearInterval(sliderRun);
 		}
 		songDisplay[0].innerHTML = toMins(currentTime);
-		console.log("currentTime:adj.::" + currentTime + ":" + Math.round(currentTime));
-		console.log("runTime:adj.::" + runTime + ":" + String(runTime - 0.5));
 	}, 50);
 }
 

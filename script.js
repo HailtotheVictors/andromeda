@@ -1,4 +1,4 @@
-var version = "3.3.0";
+var version = "3.4.0";
 var playing = false;
 var currentPlaylist = 0;
 var sliderRun;
@@ -347,8 +347,6 @@ function mettwo() {
 	var code = link.substring(start + 1,link.length);
 	document.getElementById("album").style.backgroundImage = "url('https://img.youtube.com/vi/" + code + "/0.jpg')";
 	document.getElementById("album").classList.add("adjust");
-	console.log('Calling to Advance');
-	advanceSlider();
     if (firstCustom == true) {
 		player = new YT.Player('video-placeholder', {
 			width: 600,
@@ -366,6 +364,8 @@ function mettwo() {
 	}
 	$("#video-placeholder")[0].src += "&autoplay=1";
 	forcePlay();
+	console.log('Calling to Advance');
+	advanceSlider();
 }
 
 function displayMode() {

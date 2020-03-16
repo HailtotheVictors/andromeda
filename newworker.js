@@ -1,6 +1,5 @@
-const PRECACHE = 'andromedav2-cache-v2';
+const PRECACHE = 'andromedav2-cache-v3';
 const RUNTIME = 'runtime';
-const andro_version = 'V 3.0.1';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [

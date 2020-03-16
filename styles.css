@@ -41,6 +41,12 @@ body {
 	width: calc(100% - 40px);
 	margin: 20px;
 	border-radius: 15px;
+	background-image: url("favicon.png");
+	background-size: 100%;
+	background-position: center;
+}
+.adjust {
+	background-size: 160% auto !important;
 }
 .songTime {
 	width: 100px;
@@ -153,6 +159,32 @@ body {
 	background-color: #222 !important;
 	cursor: pointer;
 }
+#search {
+	display: none;
+	width: 190px;
+	padding: 5px;
+	margin: 5px;
+	border: none;
+	height: 50px;
+	border-radius: 10px;
+	background-color: #7e4eb2;
+	font-size: 25px;
+}
+#search:hover {
+	background-color: #6e3ea2;
+}
+#search:focus {
+	outline: none;
+}
+#search::-webkit-input-placeholder {
+  color: #222;
+}
+#search:-ms-input-placeholder {
+  color: #222;
+}
+#search::placeholder {
+  color: #222;
+}
 #favLogo {
 	height: 100%;
 	width: auto;
@@ -182,6 +214,16 @@ body {
 	width: 100%;
 	display: flex;
 	text-align: left !important;
+}
+#version {
+	height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	font-family: 'Roboto', sans-serif;
+	color: #eee;
+	width: calc(100% - 10px);
+	padding: 5px;
+	text-align: left;
 }
 .songRow:hover {
 	cursor: pointer;
@@ -269,8 +311,9 @@ body {
 	#album {
 		height: calc(100% - 10px);
 		width: calc(50vh - 100px);
-		margin: 5px;
+		margin: 5px auto;
 		border-radius: 10px;
+		display: block;
 	}
 	#controlCont {
 		width: auto;
@@ -293,6 +336,27 @@ body {
 	#logo {
 		height: calc(100% - 30px);
 		padding: 15px;
+	}
+	.songRow {
+		height: 80px;
+	}
+	.albumChoose {
+		height: 70px;
+		width: 70px;
+	}
+	.chooseTont {
+		height: 80px;
+		width: calc(100% - 80px);
+	}
+	.chooseName {
+		height: 45px;
+		line-height: 45px;
+		font-size: 28px;
+	}
+	.chooseArtist {
+		height: 35px;
+		line-height: 35px;
+		font-size: 24px;
 	}
 }
 @media only screen and (max-width: 470px) {
@@ -324,6 +388,27 @@ body {
 		width: 40px;
 		margin: 5px;
 	}
+	.songRow {
+		height: 60px;
+	}
+	.albumChoose {
+		height: 50px;
+		width: 50px;
+	}
+	.chooseTont {
+		height: 60px;
+		width: calc(100% - 60px);
+	}
+	.chooseName {
+		height: 35px;
+		line-height: 35px;
+		font-size: 20px;
+	}
+	.chooseArtist {
+		height: 25px;
+		line-height: 25px;
+		font-size: 18px;
+	}
 }
 @media only screen and (max-width: 430px) {
 	#nameCont {
@@ -339,5 +424,10 @@ body {
 	#logo {
 		height: calc(100% - 50px);
 		padding: 25px;
+	}
+}
+@media only screen and (max-width: 330px) {
+	.chooseName {
+		font-size: 18px;
 	}
 }

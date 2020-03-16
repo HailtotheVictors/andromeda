@@ -1,3 +1,4 @@
+//var version = "8.0";
 var playing = false;
 var currentPlaylist = 0;
 var sliderRun;
@@ -5,6 +6,11 @@ var songHistory = [];
 var darkMode = true;
 var atHome = true;
 var runTime;
+var seeSearch = false;
+var youtube = false;
+var player = 0;
+var firstCustom = true;
+var time_update_interval;
 document.onkeydown = checkKey;
 navigator.mediaSession.setActionHandler('previoustrack', function() { rewind() });
 navigator.mediaSession.setActionHandler('nexttrack', function() { randomSong() });
@@ -28,8 +34,7 @@ function changePlaylist(newList) {
 		console.log("J: " + j);
 		var songRow = document.createElement("div");
 		songRow.classList.add("songRow");
-		//songRow.onclick = function() { chooseSong(j); }; //fff
-		songRow.onclick = function() { console.log('c'); console.log(j); }; //fff
+		songRow.onclick = function() { console.log('Trying to change song'); console.log(j); };
 		var album = document.createElement("img");
 		album.classList.add("albumChoose");
 		album.src = "https://hailtothevictors.github.io/andromeda/" + songInfo[currentPlaylist][j][3];
@@ -75,13 +80,21 @@ function playPause() {
 	var playIcon = document.getElementById("play");
 	var pauseIcon = document.getElementById("pause");
 	if (playing == false) {
-		audioElem.play();
+		if (youtube == false) {
+			audioElem.play();
+		} else {
+			player.playVideo();
+		}
 		playing = true;
 		advanceSlider();
 		playIcon.style.display = "none";
 		pauseIcon.style.display = "block";
 	} else {
-		audioElem.pause();
+		if (youtube == false) {
+			audioElem.pause();
+		} else {
+			player.pauseVideo();
+		}
 		playing = false;
 		clearInterval(sliderRun);
 		playIcon.style.display = "block";
@@ -115,9 +128,18 @@ function listSelect() {
 
 function adjustTime() {
 	var percent = document.getElementById("range").value;
-	var runTime = document.getElementById("audio").duration;
-	var newTime = percent / 100 * runTime;
-	document.getElementById("audio").currentTime = newTime;
+	var runTime;
+	var newTime;
+	if (youtube == false) {
+		runTime = document.getElementById("audio").duration;
+		newTime = percent / 100 * runTime;
+		document.getElementById("audio").currentTime = newTime;
+	} else {
+		runTime = player.getDuration();
+		newTime = percent / 100 * runTime;
+		player.seekTo(newTime);
+
+	}
 }
 
 function toMins(time) {
@@ -157,7 +179,13 @@ function rewind() {
 }
 
 function playSong(song,rewind) {
+	if (player !== 0) {
+		player.pauseVideo();
+	}
+	youtube = false;
 	const audioElem = document.getElementById("audio");
+	var playIcon = document.getElementById("play");
+	var pauseIcon = document.getElementById("pause");
 	audioElem.src = "https://hailtothevictors.github.io/andromeda/AndromedaX/" + songInfo[currentPlaylist][song][0] + ".mp3";
 	counter = 0;
 	var verification = setInterval(function() {
@@ -165,9 +193,10 @@ function playSong(song,rewind) {
 			advanceSlider();
 			audioElem.play();
 			playing = true;
-			document.getElementById("play").style.display = "none";
-			document.getElementById("pause").style.display = "block";
-			document.getElementById("album").src = "https://hailtothevictors.github.io/andromeda/" + songInfo[currentPlaylist][song][3];
+			playIcon.style.display = "none";
+			pauseIcon.style.display = "block";
+			document.getElementById("album").style.backgroundImage = "url('https://hailtothevictors.github.io/andromeda/" + songInfo[currentPlaylist][song][3] + "')";
+			document.getElementById("album").classList.remove("adjust");
 			document.getElementById("nameCont").innerHTML = songInfo[currentPlaylist][song][1];
 			document.getElementById("descCont").innerHTML = songInfo[currentPlaylist][song][2] + " | " + songInfo[currentPlaylist][song][4];
 			if (rewind == false) {
@@ -187,15 +216,25 @@ function playSong(song,rewind) {
 }
 
 function advanceSlider() {
+	console.log('Advancing');
 	const rangeElem = document.getElementById("range");
 	const audioElem = document.getElementById("audio");
 	const songDisplay = document.getElementsByClassName("songTime");
-	runTime = audioElem.duration;
+	if (youtube == false) {
+		runTime = audioElem.duration;
+	} else {
+		runTime = player.getDuration();
+	}
 	songDisplay[1].innerHTML = toMins(runTime);
 	sliderRun = setInterval(function() {
-		var currentTime = audioElem.currentTime;
+		var currentTime;
+		if (youtube == false) {
+			currentTime = audioElem.currentTime;
+		} else {
+			currentTime = player.getCurrentTime();
+		}
 		rangeElem.value = currentTime / runTime * 100;
-		if (currentTime == runTime) {
+		if (Math.round(currentTime) == runTime) {
 			randomSong();
 			clearInterval(sliderRun);
 		}
@@ -223,8 +262,13 @@ function updateMeta(song) {
 }
 
 function restartSong() {
-	document.getElementById('audio').currentTime = 0;
-	document.getElementById("audio").play();
+	if (youtube == false) {
+		document.getElementById('audio').currentTime = 0;
+		document.getElementById("audio").play();
+	} else {
+		player.seekTo(0);
+		player.playVideo();
+	}
 	playing = true;
 	advanceSlider();
 	document.getElementById("play").style.display = "none";
@@ -239,9 +283,90 @@ function checkKey(e) {
     else if (e.keyCode == '39') {
        randomSong();
     }
-	else if (e.keyCode == '32') {
+	else if (e.keyCode == '32' && e.target.nodeName !== 'INPUT') {
 		playPause();
 	}
+}
+
+function toggleSearch() {
+	if (seeSearch == false) {
+		var index = document.getElementsByClassName("control");
+		var box = document.getElementById("search");
+		for (var i = 0; i < 3; i++) {
+			index[i + 4].style.display = "none";
+		}
+		box.style.display = "block";
+		seeSearch = true;
+	} else {
+		var index = document.getElementsByClassName("control");
+		var box = document.getElementById("search");
+		box.style.display = "none";
+		for (var i = 0; i < 3; i++) {
+			index[i + 4].style.display = "block";
+		}
+		seeSearch = false;
+		if (document.getElementById("search").value !== "") {
+			searchSongs();
+		}
+	}
+}
+
+function searchSongs() {
+	clearInterval(sliderRun);
+	document.getElementById("audio").pause();
+	youtube = true;
+	var searchinput = document.getElementById("gsc-i-id1");
+	var searchbutton = document.getElementsByClassName("gsc-search-button")[1];
+	var query = document.getElementById("search").value;
+	searchinput.value = query;
+	searchbutton.click();
+	document.getElementById("search").value = "";
+	setTimeout(function() { mettwo(); }, 1200);
+}
+
+function mettwo() {
+	var index = document.getElementsByClassName("gs-visibleUrl");
+	var titles = document.getElementsByClassName("gs-title");
+	var vidName = titles[1].innerHTML.replace(/(<([^>]+)>)/ig,"");
+	var limit = 0;
+	var finalPos = 0;
+	while (limit < vidName.length) {
+		var chara = vidName.substring(limit,limit + 1);
+		if (chara == " " && limit <= 16) {
+			finalPos = limit;
+		}
+		limit++;
+	}
+	document.getElementById("nameCont").innerHTML = vidName.substring(0,finalPos) + "...";
+	if (vidName.substring(0,finalPos) == "") {
+		document.getElementById("nameCont").innerHTML = vidName.substring(0,16) + "...";
+	}
+	document.getElementById("descCont").innerHTML = "Playing on YouTube";
+	var link = index[1].innerHTML;
+	var start = link.indexOf("=");
+	var code = link.substring(start + 1,link.length);
+	document.getElementById("album").style.backgroundImage = "url('https://img.youtube.com/vi/" + code + "/0.jpg')";
+	document.getElementById("album").classList.add("adjust");
+    if (firstCustom == true) {
+		player = new YT.Player('video-placeholder', {
+			width: 600,
+			height: 400,
+			videoId: code,
+			autoplay: 1,
+			events: {
+				onReady: advanceSlider
+			}
+		});
+		firstCustom = false;
+	} else {
+		player.loadVideoById(code);
+		loadVideoById(code);
+	}
+	$("#video-placeholder")[0].src += "&autoplay=1";
+	playing = true;
+	forcePlay();
+	console.log('Calling to Advance');
+	advanceSlider();
 }
 
 function displayMode() {

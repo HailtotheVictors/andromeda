@@ -1,4 +1,4 @@
-const PRECACHE = 'andromedav2-cache-v18';
+const PRECACHE = 'andromedav2-cache-v19';
 const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.

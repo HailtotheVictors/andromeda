@@ -1,0 +1,116 @@
+#searchBar {
+  font-family: 'Source Sans Pro', sans-serif;
+  width: calc(100% - 30px);
+  margin: 10px;
+  height: 50px;
+  background-color: #555;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 40px;
+  color: white;
+}
+#searchBar:hover {
+  background-color: #5a5a5a;
+}
+#searchOuputCont {
+  height: auto;
+  max-height: calc(100% - 80px);
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-color: #888 #666;
+  scrollbar-width: thin;
+}
+#searchOuputCont::-webkit-scrollbar {
+  width: 10px;
+}
+#searchOuputCont::-webkit-scrollbar-track {
+  background: #666;
+}
+#searchOuputCont::-webkit-scrollbar-thumb {
+  background: #888;
+}
+#searchOuputCont::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+.searchRow {
+  height: 104px;
+  width: 100%;
+}
+.searchCont {
+  height: 100px;
+  width: 100%;
+  display: flex;
+}
+.searchCont > img {
+  height: 90px;
+  width: 90px;
+  margin: 5px;
+  border-radius: 10%;
+  flex-shrink: 0;
+}
+.searchTont {
+  height: 100px;
+  width: 100%;
+}
+.searchTitle, .searchArtist {
+  height: 50px;
+  line-height: 50px;
+  width: 100%;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.searchTitle {
+  font-size: 40px;
+  color: white;
+}
+.searchArtist {
+  font-size: 30px;
+  color: #ccc;
+}
+.searchCont > svg {
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+  margin: 20px 10px;
+  border-radius: 50%;
+  background-color: #555;
+  fill: white;
+  flex-shrink: 0;
+}
+.searchDivider {
+  width: 90%;
+  margin-left: 5%;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--blue), var(--purple), var(--magenta));
+}
+.searchRow:last-child > .searchDivider {
+  display: none;
+}
+@media (orientation: portrait) {
+  .searchRow {
+    height: 64px;
+  }
+  .searchTont, .searchCont {
+    height: 60px;
+  }
+  .searchCont > img {
+    height: 50px;
+    width: 50px;
+  }
+  .searchTitle, .searchArtist {
+    height: 30px;
+    line-height: 30px;
+  }
+  .searchTitle {
+    font-size: 24px;
+  }
+  .searchArtist {
+    font-size: 18px;
+  }
+  .searchCont > svg {
+    margin: 10px 5px;
+    height: 30px;
+    width: 30px;
+  }
+}

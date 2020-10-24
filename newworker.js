@@ -1,18 +1,15 @@
-const PRECACHE = 'andromedav2-cache-v19';
+const PRECACHE = 'andromedav2-cache-v20';
 const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
   '/andromeda/index.html',
   '/andromeda/styles.css',
+  '/andromeda/playlist.css',
+  '/andromeda/search.css',
+  '/andromeda/main.css',
   '/andromeda/script.js',
-  '/andromeda/assets/rewind.png',
-  '/andromeda/assets/play.png',
-  '/andromeda/assets/fast-forward.png',
-  '/andromeda/assets/restart.png',
-  '/andromeda/assets/menu.png',
-  '/andromeda/assets/music.png',
-  '/andromeda/assets/delete-sign.png'
+  '/andromeda/songs.js'
 ];
 
 // The install handler takes care of precaching the resources we always need.

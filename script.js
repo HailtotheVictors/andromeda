@@ -299,7 +299,6 @@ function playSpecificSong(elem) {
   songQueue[songIndex] = id;
   song = songs[id];
   document.getElementsByClassName('currentAlbum')[0].src = getAlbumCoverFromSong(song);
-  document.getElementsByClassName('flankingAlbums')[1].src = getAlbumCoverFromSong(song);
   goToSong();
   updateQueue();
 }

@@ -1,12 +1,15 @@
 body {
   margin: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
   --blue: #2b63a5;
-	--purple: #6e2e92;
-	--magenta: #9c2488;
-	--blue-hover: #3b73b5;
-	--purple-hover: #7e3ea2;
+  --purple: #6e2e92;
+  --magenta: #9c2488;
+  --blue-hover: #3b73b5;
+  --purple-hover: #7e3ea2;
   --magenta-hover: #ac3498;
-	--grey: #777;
+  --grey: #777;
 }
 .flexConv {
   height: 100%;

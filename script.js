@@ -7,6 +7,8 @@ var songIndex = 0;
 var audio;
 var updateScrub = false;
 var animating = false;
+var initialX = null;
+var initialY = null;
 
 window.onresize = adjust;
 
@@ -21,6 +23,35 @@ window.onload = function() {
   navigator.mediaSession.setActionHandler('pause',playPause);
   navigator.mediaSession.setActionHandler('seekbackward', function() { skipInTrack(-10); });
   navigator.mediaSession.setActionHandler('seekforward', function() { skipInTrack(10); });
+  var container = document.getElementById('playingCont');
+  container.addEventListener('touchstart',startTouch,false);
+  container.addEventListener('touchmove',moveTouch,false);
+};
+
+function startTouch(e) {
+  initialX = e.touches[0].clientX;
+  initialY = e.touches[0].clientY;
+};
+
+function moveTouch(e) {
+  if (initialX === null || initialY === null) {
+    return;
+  }
+  var currentX = e.touches[0].clientX;
+  var currentY = e.touches[0].clientY;
+  var diffX = initialX - currentX;
+  var diffY = initialY - currentY;
+
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    if (diffX > 0) {
+      nextSong();
+    } else {
+      prevSong();
+    }
+  }
+  initialX = null;
+  initialY = null;
+  e.preventDefault();
 };
 
 document.onkeydown = checkKey;

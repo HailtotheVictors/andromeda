@@ -1,405 +1,589 @@
-var version = "V 3.8.0";
-var playing = false;
-var currentPlaylist = 0;
-var sliderRun;
-var songHistory = [];
-var darkMode = true;
-var atHome = true;
-var runTime;
-var seeSearch = false;
-var youtube = false;
-var player = 0;
-var firstCustom = true;
-var time_update_interval;
+var launched = false;
+var extended = true;
+var tempSongList = [];
+var songList = [];
+var songQueue = [];
+var songIndex = 0;
+var audio;
+var updateScrub = false;
+var animating = false;
+
+window.onresize = adjust;
+
+window.onload = function() {
+  audio = document.getElementById('audio');
+  document.getElementById('scrubBar').value = 0;
+  audio.addEventListener('ended',nextSong);
+  document.getElementsByClassName('currentAlbum')[0].addEventListener('click',playPause);
+  navigator.mediaSession.setActionHandler('previoustrack',backAction);
+  navigator.mediaSession.setActionHandler('nexttrack',nextSong);
+  navigator.mediaSession.setActionHandler('play',playPause);
+  navigator.mediaSession.setActionHandler('pause',playPause);
+  navigator.mediaSession.setActionHandler('seekbackward', function() { skipInTrack(-10); });
+  navigator.mediaSession.setActionHandler('seekforward', function() { skipInTrack(10); });
+};
+
 document.onkeydown = checkKey;
-navigator.mediaSession.setActionHandler('previoustrack', function() { rewind() });
-navigator.mediaSession.setActionHandler('nexttrack', function() { randomSong() });
-navigator.mediaSession.setActionHandler('play', function() {  playPause() });
-navigator.mediaSession.setActionHandler('pause', function() { playPause() });
-
-function changePlaylist(newList) {
-	forcePlay();
-	currentPlaylist = newList;
-	randomSong();
-	var elem = document.getElementById("songList");
-	var index = elem.children[0].children;
-	var limit = 0;
-	while (limit < 100 && index[1] !== undefined) {
-		index[1].remove();
-		limit++;
-	}
-	listSelect();
-	var newIndex = songInfo[currentPlaylist].length;
-	for (var j = 0; j < newIndex; j++) {
-		console.log("J: " + j);
-		var songRow = document.createElement("div");
-		songRow.classList.add("songRow");
-		songRow.onclick = function() { console.log('Trying to change song'); console.log(j); };
-		var album = document.createElement("img");
-		album.classList.add("albumChoose");
-		album.src = "https://hailtothevictors.github.io/andromeda/" + songInfo[currentPlaylist][j][3];
-		songRow.appendChild(album);
-		var tont = document.createElement("div");
-		tont.classList.add("chooseTont");
-		songRow.appendChild(tont);
-		var songName = document.createElement("div");
-		songName.classList.add("chooseName");
-		songName.innerHTML = songInfo[currentPlaylist][j][1];
-		tont.appendChild(songName);
-		var songArtist = document.createElement("div");
-		songArtist.classList.add("chooseArtist");
-		songArtist.innerHTML = songInfo[currentPlaylist][j][2];
-		tont.appendChild(songArtist);
-		elem.children[0].appendChild(songRow);
-	}
+function checkKey(e) {
+  e = e || window.event;
+  if (e.keyCode == '38') {
+    skipInTrack(10);
+  } else if (e.keyCode == '40') {
+	  skipInTrack(-10);
+  } else if (e.keyCode == '37') {
+	   prevSong();
+  } else if (e.keyCode == '39') {
+	   nextSong();
+  } else if (e.keyCode == '32') {
+	   playPause();
+  }
 }
 
-function pageClose(elem) {
-	var page = elem.parentElement.parentElement;
-	$(page).fadeOut(200);
-	$("#pageHome").delay(200).fadeIn(200);
-	atHome = true;
+function backAction() {
+  if (audio.currentTime < 10) {
+    prevSong();
+  } else {
+    audio.currentTime = 0;
+  }
+  document.getElementsByClassName('scrubTime')[0].textContent = '0:00';
 }
 
-function chooseSong(song) {
-	playSong(song,false);
-	songSelect();
-	forcePlay();
-}
-
-function forcePlay() {
-	if (playing == false) {
-		playing = true;
-		document.getElementById("play").style.display = "none";
-		document.getElementById("pause").style.display = "block";
-	}
+function skipInTrack(secs) {
+  audio.currentTime += secs;
+  if (audio.currentTime < 0) {
+    audio.currentTime = 0;
+  } else if (audio.currentTime > audio.duration) {
+    nextSong();
+  }
+  document.getElementsByClassName('scrubTime')[0].textContent = convertToTime(audio.currentTime);
 }
 
 function playPause() {
-	const audioElem = document.getElementById("audio");
-	var playIcon = document.getElementById("play");
-	var pauseIcon = document.getElementById("pause");
-	if (playing == false) {
-		if (youtube == false) {
-			audioElem.play();
-		} else {
-			player.playVideo();
-		}
-		playing = true;
-		advanceSlider();
-		playIcon.style.display = "none";
-		pauseIcon.style.display = "block";
-	} else {
-		if (youtube == false) {
-			audioElem.pause();
-		} else {
-			player.pauseVideo();
-		}
-		playing = false;
-		clearInterval(sliderRun);
-		playIcon.style.display = "block";
-		pauseIcon.style.display = "none";
-	}
+  if (!launched) {
+    return;
+  }
+  if (audio.paused) {
+    audio.play();
+    document.getElementById('playPause').children[0].setAttribute('d','M14,19H18V5H14M6,19H10V5H6V19Z');
+    document.getElementsByClassName('scrubTime')[0].textContent = convertToTime(audio.currentTime);
+    document.getElementById('scrubBar').value = audio.currentTime / audio.duration * 100;
+    startScrub();
+  } else {
+    audio.pause();
+    document.getElementById('playPause').children[0].setAttribute('d','M8,5.14V19.14L19,12.14L8,5.14Z');
+    stopScrub();
+  }
 }
 
-function songSelect() {
-	if (atHome == true) {
-		$("#pageHome").fadeOut(200);
-		$("#songList").delay(200).fadeIn(200);
-		atHome = false;
-	} else {
-		$("#songList").fadeOut(200);
-		$("#pageHome").delay(200).fadeIn(200);
-		atHome = true;
-	}
+function nextSong() {
+  if (animating) {
+    return;
+  }
+  stopScrub();
+  songIndex++;
+  goToSong();
+  updateQueue();
+  animateCovers(1);
 }
 
-function listSelect() {
-	if (atHome == true) {
-		$("#pageHome").fadeOut(200);
-		$("#playlists").delay(200).fadeIn(200);
-		atHome = false;
-	} else {
-		$("#playlists").fadeOut(200);
-		$("#pageHome").delay(200).fadeIn(200);
-		atHome = true;
-	}
+function prevSong() {
+  if (songIndex < 1 || animating) {
+    return;
+  }
+  stopScrub();
+  songIndex--;
+  goToSong();
+  updateQueue();
+  animateCovers(-1);
 }
 
-function adjustTime() {
-	var percent = document.getElementById("range").value;
-	var runTime;
-	var newTime;
-	if (youtube == false) {
-		runTime = document.getElementById("audio").duration;
-		newTime = percent / 100 * runTime;
-		document.getElementById("audio").currentTime = newTime;
-	} else {
-		runTime = player.getDuration();
-		newTime = percent / 100 * runTime;
-		player.seekTo(newTime);
-
-	}
+function adjust() {
+  if (!launched) {
+    return;
+  }
+  let covers = document.getElementsByClassName('queueCover');
+  let titles = document.getElementsByClassName('queueTitle');
+  let artists = document.getElementsByClassName('queueArtist');
+  setTimeout(function() {
+    var st = document.getElementById('songTitle');
+    st.textContent = checkOverflow(st,songs[songQueue[songIndex]].title);
+    var sd = document.getElementById('songDesc');
+    sd.textContent = checkOverflow(sd,`${songs[songQueue[songIndex]].artist} | ${decodeEntities(songs[songQueue[songIndex]].details)}`);
+    for (let i = 0; i < 5; i++) {
+      let song = songs[songQueue[songIndex + i]];
+      titles[i].textContent = checkOverflow(titles[i],song.title);
+      artists[i].textContent = checkOverflow(artists[i],song.artist);
+    }
+  }, 10);
 }
 
-function toMins(time) {
-	time = Math.round(time);
-	var mins = Math.floor(time / 60);
-	var secs = Number(time) - Number(mins) * 60;
-	if (secs < 10) {
-		secs = "0" + secs;
-	}
-	return mins + ":" + secs;
+function goTo(num) {
+  if (!launched && num == 0) {
+    num = 2;
+  }
+  let pages = document.getElementsByClassName('content');
+  let tabs = document.getElementsByClassName('sideNav');
+  for (let i = 0; i < pages.length; i++) {
+    if (i == num) {
+      pages[i].style.display = 'block';
+      if (tabs[i]) {
+        tabs[i].style.borderLeftColor = 'currentColor';
+      }
+    } else {
+      pages[i].style.display = 'none';
+      if (tabs[i]) {
+        tabs[i].style.borderLeftColor = '#222';
+      }
+    }
+  }
+  if (num == 4) {
+    tabs[2].style.borderLeftColor = 'currentColor';
+  } else if (num == 0) {
+    setTimeout(function() {
+      var st = document.getElementById('songTitle');
+      st.textContent = checkOverflow(st,songs[songQueue[songIndex]].title);
+      var sd = document.getElementById('songDesc');
+      sd.textContent = checkOverflow(sd,`${songs[songQueue[songIndex]].artist} | ${decodeEntities(songs[songQueue[songIndex]].details)}`);
+    }, 10);
+  } else if (num == 1) {
+    goToSearch();
+  }
 }
 
-function randomSong() {
-	var songLength = songInfo[currentPlaylist].length;
-	var randomSong = Math.floor(Math.random() * songLength);
-	var limiter = 0;
-	var prev = [];
-	prev[0] = songHistory[songHistory.length - 1];
-	prev[1] = songHistory[songHistory.length - 2];
-	prev[2] = songHistory[songHistory.length - 3];
-	for (var i = 1; i < 3; i++) {
-		if (songHistory[songHistory.length - i] == null) {
-			prev[i - 1] = -1;
-		}
-	}
-	while ((randomSong == prev[0] || randomSong == prev[1] || randomSong == prev[2]) && limiter < 30) {
-		randomSong = Math.floor(Math.random() * songLength);
-		limiter++;
-	}
-	playSong(randomSong,false);
+function goToSearch() {
+  document.getElementById('searchBar').value = '';
+  var parent = document.getElementById('searchOuputCont');
+  parent.innerHTML = '';
+  var iter = 0;
+  for (let song of songs) {
+    let newRow = document.createElement('DIV');
+    newRow.classList.add('searchRow');
+    parent.append(newRow);
+    let newCont = document.createElement('DIV');
+    newCont.classList.add('searchCont');
+    newRow.append(newCont);
+    let newImg = document.createElement('IMG');
+    newImg.src = getAlbumCoverFromSong(song);
+    newCont.append(newImg);
+    let newTont = document.createElement('DIV');
+    newTont.classList.add('searchTont');
+    newCont.append(newTont);
+    let newTitle = document.createElement('DIV');
+    newTitle.classList.add('searchTitle');
+    newTont.append(newTitle);
+    let newArtist = document.createElement('DIV');
+    newArtist.classList.add('searchArtist');
+    newTont.append(newArtist);
+    let newPlay = makeSVG('M8,5.14V19.14L19,12.14L8,5.14Z');
+    newPlay.setAttribute('data-id',iter);
+    newPlay.addEventListener('click',function() { playSpecificSong(this) });
+    newCont.append(newPlay);
+    let newQueue = makeSVG('M2,16H10V14H2M18,14V10H16V14H12V16H16V20H18V16H22V14M14,6H2V8H14M14,10H2V12H14V10Z');
+    newQueue.setAttribute('data-id',iter);
+    newPlay.addEventListener('click',function() { playSpecificSong(this) });
+    newCont.append(newQueue);
+    let newDivider = document.createElement('DIV');
+    newDivider.classList.add('searchDivider');
+    newRow.append(newDivider);
+    setTimeout(function() {
+      newTitle.textContent = checkOverflow(newTitle,song.title);
+      newArtist.textContent = checkOverflow(newArtist,song.artist);
+    }, 10);
+    iter++;
+  }
 }
 
-function rewind() {
-	if(songHistory.length !== 1) {
-		playSong(songHistory[songHistory.length - 2],true);
-	}
+function search() {
+  var query = document.getElementById('searchBar').value;
+  var rows = document.getElementsByClassName('searchRow');
+  for (let i = 0; i < songs.length; i++) {
+    let song = songs[i];
+    if (song['title'].replace('/','').indexOf(query) !== -1 || song['artist'].indexOf(query) !== -1 || song['details'].indexOf(query) !== -1) {
+      rows[i].style.display = 'block';
+    } else {
+      rows[i].style.display = 'none';
+    }
+  }
 }
 
-function playSong(song,rewind) {
-	if (player !== 0) {
-		player.pauseVideo();
-	}
-	youtube = false;
-	const audioElem = document.getElementById("audio");
-	var playIcon = document.getElementById("play");
-	var pauseIcon = document.getElementById("pause");
-	audioElem.src = "https://hailtothevictors.github.io/andromeda/AndromedaX/" + songInfo[currentPlaylist][song][0] + ".mp3";
-	counter = 0;
-	var verification = setInterval(function() {
-		if (audioElem.readyState > 3 && counter < 30) {
-			advanceSlider();
-			audioElem.play();
-			playing = true;
-			playIcon.style.display = "none";
-			pauseIcon.style.display = "block";
-			document.getElementById("album").style.backgroundImage = "url('https://hailtothevictors.github.io/andromeda/" + songInfo[currentPlaylist][song][3] + "')";
-			document.getElementById("album").classList.remove("adjust");
-			document.getElementById("nameCont").innerHTML = songInfo[currentPlaylist][song][1];
-			document.getElementById("descCont").innerHTML = songInfo[currentPlaylist][song][2] + " | " + songInfo[currentPlaylist][song][4];
-			if (rewind == false) {
-				songHistory.push(song);
-			}
-			updateMeta(song);
-			clearInterval(verification);
-		} else {
-			if (counter < 30) {
-			} else {
-				clearInterval(verification);
-				randomSong();
-			}
-		}
-		counter++;
-	}, 100);
+function goToPlaylist(img) {
+  var parent = document.getElementById('playlistCont');
+  parent.innerHTML = '';
+  parent.scrollTo(0,0);
+  document.getElementById('playlistName').textContent = decodeEntities(img.getAttribute('data-name'));
+  document.getElementById('playlistCover').src = img.src;
+  var qualifiers = [{attr:'master',lim:'musica'},{attr:'artist',lim:'Imagine Dragons'},{attr:'artist',lim:'Avicii'},{attr:'master',lim:'phineas'}];
+  var qualifier = qualifiers[Number(img.getAttribute('data-qual'))];
+  var songsInPlaylist = [];
+  var songIds = [];
+  var playlistLength = 0;
+  for (let song in songs) {
+    if (songs[song][qualifier.attr].indexOf(qualifier.lim) !== -1) {
+      songsInPlaylist.push(songs[song]);
+      playlistLength += songs[song].length;
+      tempSongList.push(Number(song));
+      songIds.push(song);
+    }
+  }
+  document.getElementById('playlistInfo').textContent = `${songsInPlaylist.length} songs, ${convertSecsToText(playlistLength)}`;
+  var iter = 0;
+  for (let song of songsInPlaylist) {
+    let newRow = document.createElement('DIV');
+    newRow.classList.add('playlistRow');
+    let newCover = document.createElement('IMG');
+    newCover.src = getAlbumCoverFromSong(song);
+    newRow.append(newCover);
+    let newTont = document.createElement('DIV');
+    newTont.classList.add('playlistRowTont');
+    let newTitle = document.createElement('DIV');
+    newTitle.classList.add('playlistTitle');
+    newTont.append(newTitle);
+    let newArtist = document.createElement('DIV');
+    newArtist.classList.add('playlistArtist');
+    newTont.append(newArtist);
+    newRow.append(newTont);
+    parent.append(newRow);
+    let newPlay = makeSVG('M8,5.14V19.14L19,12.14L8,5.14Z');
+    newPlay.setAttribute('data-id',songIds[iter]);
+    newPlay.addEventListener('click',function() { playSpecificSong(this) });
+    newRow.append(newPlay);
+    let newQueue = makeSVG('M2,16H10V14H2M18,14V10H16V14H12V16H16V20H18V16H22V14M14,6H2V8H14M14,10H2V12H14V10Z');
+    newQueue.setAttribute('data-id',songIds[iter]);
+    newQueue.addEventListener('click',function() { addToQueue(this) });
+    newRow.append(newQueue);
+    setTimeout(function() {
+      newTitle.textContent = checkOverflow(newTitle,song.title);
+      newArtist.textContent = checkOverflow(newArtist,song.artist);
+    }, 10);
+    iter++;
+  }
 }
 
-function advanceSlider() {
-	console.log('Advancing');
-	const rangeElem = document.getElementById("range");
-	const audioElem = document.getElementById("audio");
-	const songDisplay = document.getElementsByClassName("songTime");
-	if (youtube == false) {
-		runTime = audioElem.duration;
-	} else {
-		runTime = player.getDuration();
-	}
-	songDisplay[1].innerHTML = toMins(runTime);
-	sliderRun = setInterval(function() {
-		var currentTime;
-		if (youtube == false) {
-			currentTime = audioElem.currentTime;
-		} else {
-			currentTime = player.getCurrentTime();
-		}
-		rangeElem.value = currentTime / runTime * 100;
-		if (youtube == true && Math.round(currentTime) >= (runTime - 0.5)) {
-			randomSong();
-			clearInterval(sliderRun);
-		} else if (youtube == false && currentTime == runTime) {
-			randomSong();
-			clearInterval(sliderRun);
-		}
-		songDisplay[0].innerHTML = toMins(currentTime);
-	}, 50);
+function shufflePlaylist() {
+  launched = true;
+  songQueue.length = 0;
+  songList.length = 0;
+  for (let song of tempSongList) {
+    songList.push(song);
+  }
+  tempSongList.length = 0;
+  songIndex = 0;
+  while (songQueue.length < 10) {
+    let randomSong = Math.floor(Math.random() * songList.length);
+    if (songQueue.includes(songList[randomSong]) == false) {
+      songQueue.push(songList[randomSong]);
+    }
+  }
+  document.getElementsByClassName('currentAlbum')[0].src = getAlbumCoverFromSong(songs[songQueue[songIndex]]);
+  document.getElementsByClassName('flankingAlbums')[0].src = 'https://hailtothevictors.github.io/andromeda/albums/placeholder.png';
+  document.getElementsByClassName('flankingAlbums')[1].src = getAlbumCoverFromSong(songs[songQueue[songIndex + 1]]);
+  goToSong();
+  updateQueue();
 }
 
-function updateMeta(song) {
-	var titlex = songInfo[currentPlaylist][song][1];
-	var artistx = songInfo[currentPlaylist][song][2];
-	var albumx = songInfo[currentPlaylist][song][4];
+function addToQueue(elem) {
+  if (!launched) {
+    return;
+  }
+  var id = Number(elem.getAttribute('data-id'));
+  songQueue.splice(songIndex + 1,0,id);
+  document.getElementsByClassName('flankingAlbums')[1].src = getAlbumCoverFromSong(songs[id]);
+  updateQueue();
+}
+
+function playSpecificSong(elem) {
+  if (!launched) {
+    return;
+  }
+  var id = Number(elem.getAttribute('data-id'));
+  songQueue[songIndex] = id;
+  song = songs[id];
+  document.getElementsByClassName('currentAlbum')[0].src = getAlbumCoverFromSong(song);
+  document.getElementsByClassName('flankingAlbums')[1].src = getAlbumCoverFromSong(song);
+  goToSong();
+  updateQueue();
+}
+
+function playPlaylist() {
+  launched = true;
+  songQueue.length = 0;
+  songList.length = 0;
+  for (let song of tempSongList) {
+    songList.push(song);
+    songQueue.push(song);
+  }
+  tempSongList.length = 0;
+  songIndex = 0;
+  document.getElementsByClassName('currentAlbum')[0].src = getAlbumCoverFromSong(songs[songQueue[songIndex]]);
+  document.getElementsByClassName('flankingAlbums')[0].src = 'https://hailtothevictors.github.io/andromeda/albums/placeholder.png';
+  document.getElementsByClassName('flankingAlbums')[1].src = getAlbumCoverFromSong(songs[songQueue[songIndex + 1]]);
+  goToSong();
+  updateQueue();
+}
+
+function goToSong() {
+  var newSong = songs[songQueue[songIndex]];
+  audio.currentTime = 0;
+  audio.src = getAudioSourceFromSong(newSong);
+  audio.play();
+  document.getElementsByClassName('scrubTime')[0].textContent = '0:00';
+  document.getElementsByClassName('scrubTime')[1].textContent = '0:00';
+  document.getElementById('scrubBar').value = 0;
+  document.getElementById('home').style.backgroundImage = `url('${getAlbumCoverFromSong(newSong)}')`;
+  goTo(0);
+  adjust();
+  updateMeta();
+}
+
+function updateQueue() {
+  var lastTen = [];
+  for (let i = songIndex; i < songIndex + 10; i++) {
+    if (songQueue[i]) {
+      lastTen.push(songQueue[i]);
+    }
+  }
+  while (songQueue.length < songIndex + 10) {
+    let randomSong = Math.floor(Math.random() * songList.length);
+    if (lastTen.includes(songList[randomSong]) == false) {
+      songQueue.push(songList[randomSong]);
+    }
+  }
+  let covers = document.getElementsByClassName('queueCover');
+  let titles = document.getElementsByClassName('queueTitle');
+  let artists = document.getElementsByClassName('queueArtist');
+  for (let i = 0; i < 5; i++) {
+    let song = songs[songQueue[songIndex + i]];
+    covers[i].src = getAlbumCoverFromSong(song);
+    titles[i].textContent = checkOverflow(titles[i],song.title);
+    artists[i].textContent = checkOverflow(artists[i],song.artist);
+  }
+}
+
+function audioReady() {
+  if (!launched) {
+    return;
+  }
+  document.getElementById('playPause').children[0].setAttribute('d','M14,19H18V5H14M6,19H10V5H6V19Z');
+  document.getElementsByClassName('scrubTime')[1].textContent = convertToTime(audio.duration);
+  audio.play();
+  startScrub();
+}
+
+function startScrub() {
+  if (updateScrub == false) {
+    updateScrub = setInterval(function() {
+      document.getElementsByClassName('scrubTime')[0].textContent = convertToTime(audio.currentTime);
+      document.getElementById('scrubBar').value = audio.currentTime / audio.duration * 100;
+    }, 10);
+  }
+}
+
+function stopScrub() {
+  clearInterval(updateScrub);
+  updateScrub = false;
+}
+
+function animateCovers(dir) {
+  var parent = document.getElementById('coversCont');
+  var newCover = document.createElement('IMG');
+  if (dir == 1) {
+    newCover.src = getAlbumCoverFromSong(songs[songQueue[songIndex + 1]]);
+    parent.append(newCover);
+  } else if (songIndex > 0) {
+    newCover.src = getAlbumCoverFromSong(songs[songQueue[songIndex - 1]]);
+    parent.prepend(newCover);
+  } else {
+    newCover.src = 'https://hailtothevictors.github.io/andromeda/albums/placeholder.png';
+    parent.prepend(newCover);
+  }
+  newCover.style.width = '0%';
+  var iter = 0;
+  var covers = parent.children;
+  animating = true;
+  if (dir == 1) {
+    var promotedCover = covers[2];
+    var goneCover = covers[0];
+    var demotedCover = covers[1];
+  } else {
+    var promotedCover = covers[1];
+    var goneCover = covers[3];
+    var demotedCover = covers[2];
+  }
+  var animation = setInterval(function() {
+    iter++;
+    newCover.style.width = `${iter * 1.5}%`;
+    newCover.style.margin = `${iter}px`;
+    newCover.classList.add('flankingAlbums');
+    goneCover.style.width = `${30 - iter * 1.5}%`;
+    goneCover.style.margin = `${20 - iter}px`;
+    demotedCover.style.width = `${45 - iter * 0.75}%`;
+    demotedCover.style.margin = `${iter}px`;
+    demotedCover.classList.add('flankingAlbums');
+    demotedCover.classList.remove('currentAlbum');
+    demotedCover.removeEventListener('click',playPause);
+    promotedCover.style.width = `${30 + iter * 0.75}%`;
+    promotedCover.style.margin = `${20 - iter}px`;
+    promotedCover.classList.remove('flankingAlbums');
+    promotedCover.classList.add('currentAlbum');
+    promotedCover.addEventListener('click',playPause);
+    if (iter == 20) {
+      goneCover.remove();
+      animating = false;
+      clearInterval(animation);
+    }
+  }, 10);
+}
+
+function updateMeta() {
+  var currentSong = songs[songQueue[songIndex]];
+	var titlex = currentSong.title;
+	var artistx = currentSong.artist;
+	var albumx = decodeEntities(currentSong.details);
+	var url = getAlbumCoverFromSong(currentSong);
+	var arg = {src: url};
+	var sys = [];
+	sys[0] = arg;
 	navigator.mediaSession.metadata = new MediaMetadata({
 		title: titlex,
 		artist: artistx,
-		album: albumx,
-		artwork: [
-			{ src: 'https://hailtothevictors.github.io/andromeda/newicons/icon-96x96.png',   sizes: '96x96',   type: 'image/png' },
-			{ src: 'https://hailtothevictors.github.io/andromeda/newicons/icon-128x128.png', sizes: '128x128', type: 'image/png' },
-			{ src: 'https://hailtothevictors.github.io/andromeda/newicons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
-			{ src: 'https://hailtothevictors.github.io/andromeda/newicons/icon-256x256.png', sizes: '256x256', type: 'image/png' },
-			{ src: 'https://hailtothevictors.github.io/andromeda/newicons/icon-384x384.png', sizes: '384x384', type: 'image/png' },
-			{ src: 'https://hailtothevictors.github.io/andromeda/newicons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
-		]
+		artwork: sys,
+		album: albumx
 	});
 }
 
-function restartSong() {
-	if (youtube == false) {
-		document.getElementById('audio').currentTime = 0;
-		document.getElementById("audio").play();
-	} else {
-		player.seekTo(0);
-		player.playVideo();
-	}
-	playing = true;
-	advanceSlider();
-	document.getElementById("play").style.display = "none";
-	document.getElementById("pause").style.display = "block";
+function scrubSong(val) {
+  var point = val / 100 * audio.duration;
+  audio.currentTime = point;
+  document.getElementsByClassName('scrubTime')[0].textContent = convertToTime(point);
 }
 
-function checkKey(e) {
-    e = e || window.event;
-    if (e.keyCode == '37') {
-       rewind();
+//resources
+
+function getAudioSourceFromSong(song) {
+  return `https://hailtothevictors.github.io/andromeda/AndromedaX/${song.src}.mp3`;
+}
+
+function makeSVG(path) {
+  var newSVG = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  newSVG.setAttribute('viewBox','0 0 24 24');
+  var newPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+  newPath.setAttribute('d',path);
+  newSVG.append(newPath);
+  return newSVG;
+}
+
+function getAlbumCoverFromSong(song) {
+  return `https://hailtothevictors.github.io/andromeda${song.cover}`;
+}
+
+function checkOverflow(elem,str) {
+  let testDiv = document.createElement('DIV');
+  let display = getComputedStyle(elem.parentElement).display;
+  testDiv.style.fontSize = getComputedStyle(elem).fontSize;
+  testDiv.style.fontFamily = getComputedStyle(elem).fontFamily;
+  testDiv.style.width = getComputedStyle(elem).width;
+  elem.parentElement.display = 'block';
+  testDiv.style.whiteSpace = 'nowrap';
+  testDiv.textContent = str;
+  elem.parentElement.appendChild(testDiv);
+  if (testDiv.scrollWidth <= testDiv.offsetWidth) {
+    elem.parentElement.display = display;
+    elem.parentElement.removeChild(testDiv);
+    return str;
+  }
+  for (let i = str.length; i >= 0; i--) {
+    testDiv.textContent = str.substring(0,i) + '...';
+    if (testDiv.scrollWidth <= testDiv.offsetWidth) {
+      elem.parentElement.display = display;
+      elem.parentElement.removeChild(testDiv);
+      return str.substring(0,i - 1) + '...';
     }
-    else if (e.keyCode == '39') {
-       randomSong();
+  }
+}
+
+function toggleSidebar(elem) {
+  let sideBar = document.getElementById('sideBar');
+  let container = document.getElementById('container');
+  var oldext = extended;
+  if (oldext == true) {
+    var d = 'M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z';
+  } else if (oldext == false) {
+    var d = 'M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z';
+  }
+  extended = undefined;
+  var iter = 0;
+  let animation = setInterval(function() {
+    iter += 12;
+    elem.children[0].style.opacity = Math.abs(1 - iter / 120);
+    if (iter == 120) {
+      elem.children[0].setAttribute('d',d);
     }
-	else if (e.keyCode == '32' && e.target.nodeName !== 'INPUT') {
-		playPause();
-	}
+    if (oldext == true) {
+      w = 240 - iter;
+    } else {
+      w = iter;
+    }
+    sideBar.style.width = `${w}px`;
+    container.style.width = `calc(100% - ${w}px)`;
+    if (iter == 240) {
+      extended = !oldext;
+      adjust();
+      clearInterval(animation);
+    }
+  }, 10);
 }
 
-function toggleSearch() {
-	if (seeSearch == false) {
-		var index = document.getElementsByClassName("control");
-		var box = document.getElementById("search");
-		for (var i = 0; i < 3; i++) {
-			index[i + 4].style.display = "none";
-		}
-		box.style.display = "block";
-		seeSearch = true;
-	} else {
-		var index = document.getElementsByClassName("control");
-		var box = document.getElementById("search");
-		box.style.display = "none";
-		for (var i = 0; i < 3; i++) {
-			index[i + 4].style.display = "block";
-		}
-		seeSearch = false;
-		if (document.getElementById("search").value !== "") {
-			searchSongs();
-		}
-	}
+function convertSecsToText(time) {
+  if (time < 3600) { //less than an hour
+    let secs = time % 60;
+    let mins = (time - secs) / 60;
+    if (secs > 0) {
+      return `${mins} ${plural('minute',mins,false)} ${secs} ${plural('second',secs,false)}`;
+    } else {
+      return `${mins} ${plural('minute',mins,false)}`;
+    }
+  } else {
+    let hours = Math.floor(time / 3600);
+    let mins = Math.round((time - hours * 3600) / 60);
+    if (mins > 0) {
+      return `${hours} ${plural('hour',hours,false)} ${mins} ${plural('minute',mins,false)}`;
+    } else {
+      return `${hours} ${plural('hour',hours,false)}`;
+    }
+  }
 }
 
-function searchSongs() {
-	clearInterval(sliderRun);
-	document.getElementById("audio").pause();
-	youtube = true;
-	var searchinput = document.getElementById("gsc-i-id1");
-	var searchbutton = document.getElementsByClassName("gsc-search-button")[1];
-	var query = document.getElementById("search").value;
-	searchinput.value = query;
-	searchbutton.click();
-	document.getElementById("search").value = "";
-	setTimeout(function() { mettwo(); }, 1200);
+function convertToTime(time) {
+  time = Math.round(time);
+  var secs = time % 60;
+  var mins = (time - secs) / 60;
+  if (secs < 10) {
+    secs = '0' + secs;
+  }
+  return `${mins}:${secs}`;
 }
 
-function mettwo() {
-	var index = document.getElementsByClassName("gs-visibleUrl");
-	var titles = document.getElementsByClassName("gs-title");
-	var vidName = titles[1].innerHTML.replace(/(<([^>]+)>)/ig,"");
-	var limit = 0;
-	var finalPos = 0;
-	while (limit < vidName.length) {
-		var chara = vidName.substring(limit,limit + 1);
-		if (chara == " " && limit <= 16) {
-			finalPos = limit;
-		}
-		limit++;
-	}
-	document.getElementById("nameCont").innerHTML = vidName.substring(0,finalPos) + "...";
-	if (vidName.substring(0,finalPos) == "") {
-		document.getElementById("nameCont").innerHTML = vidName.substring(0,16) + "...";
-	}
-	document.getElementById("descCont").innerHTML = "Playing on YouTube";
-	var link = index[1].innerHTML;
-	var start = link.indexOf("=");
-	var code = link.substring(start + 1,link.length);
-	document.getElementById("album").style.backgroundImage = "url('https://img.youtube.com/vi/" + code + "/0.jpg')";
-	document.getElementById("album").classList.add("adjust");
-    if (firstCustom == true) {
-		player = new YT.Player('video-placeholder', {
-			width: 600,
-			height: 400,
-			videoId: code,
-			autoplay: 1,
-			events: {
-				onReady: advanceSlider
-			}
-		});
-		firstCustom = false;
-	} else {
-		player.loadVideoById(code);
-		loadVideoById(code);
-	}
-	$("#video-placeholder")[0].src += "&autoplay=1";
-	forcePlay();
-	console.log('Calling to Advance');
-	advanceSlider();
+function plural(str,num,size) {
+  if (num == 1) {
+    return str;
+  } else if (size == true) {
+    return `${str}S`;
+  } else {
+    return `${str}s`;
+  }
 }
 
-function displayMode() {
-	var bottom = document.getElementById("bottom");
-	var forehead = document.getElementById("forehead");
-	var content = document.getElementById("content");
-	var logo = document.getElementById("logo");
-	var nameCont = document.getElementById("nameCont");
-	var descCont = document.getElementById("descCont");
-	var times = document.getElementsByClassName("songTime");
-	if (darkMode == true) {
-		bottom.style.backgroundColor = "#ccc";
-		forehead.style.backgroundColor = "#ccc";
-		content.style.backgroundColor = "#eee";
-		logo.src = "logo_d_c.png";
-		for (var i = 0; i < times.length; i++) {
-			times[i].style.color = "#333";
-		}
-		nameCont.style.color = "#333";
-		descCont.style.color = "#555";
-		darkMode = false;
-	} else {
-		bottom.style.backgroundColor = "#222";
-		forehead.style.backgroundColor = "#222";
-		content.style.backgroundColor = "#444";
-		logo.src = "logo2_c.png";
-		for (var j = 0; j < times.length; j++) {
-			times[j].style.color = "#eee";
-		}
-		nameCont.style.color = "#eee";
-		descCont.style.color = "#ccc";
-		darkMode = true;
-	}
-}
+var decodeEntities = (function() {
+  var element = document.createElement('div');
+  function decodeHTMLEntities (str) {
+    if(str && typeof str === 'string') {
+      str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+      str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+      element.innerHTML = str;
+      str = element.textContent;
+      element.textContent = '';
+    }
+    return str;
+  }
+  return decodeHTMLEntities;
+})();

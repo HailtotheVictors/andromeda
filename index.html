@@ -1,503 +1,202 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<script>
-	if ('serviceWorker' in navigator) {
-		window.addEventListener('load', function() {
-			navigator.serviceWorker.register('/andromeda/newworker.js').then(function(registration) {
-				// Registration was successful
-				console.log('ServiceWorker registration successful with scope: ', registration.scope);
-			}, function(err) {
-				// registration failed :(
-				console.log('ServiceWorker registration failed: ', err);
-			});
-		});
-	}
-	</script>
-	<meta name="theme-color" content="#222"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="manifest" href="https://hailtothevictors.github.io/andromeda/newmanifest.json">
-	<title>Andromeda</title>
-	<link rel="shortcut icon" href="favicon_c.png"/>
-	<link rel="stylesheet" href="styles.css"/>
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script async src="https://cse.google.com/cse.js?cx=010448235055792414413:bd55esbdtnq"></script>
-	<script src="https://www.youtube.com/iframe_api"></script>
-	<script src="script.js"></script>
-	<script src="songs.js"></script>
-</head>
+  <head>
+    <script>
+  	if ('serviceWorker' in navigator) {
+  		window.addEventListener('load', function() {
+  			navigator.serviceWorker.register('/andromeda/newworker.js').then(function(registration) {
+  				// Registration was successful
+  				console.log('ServiceWorker registration successful with scope: ', registration.scope);
+  			}, function(err) {
+  				// registration failed :(
+  				console.log('ServiceWorker registration failed: ', err);
+  			});
+  		});
+  	}
+  	</script>
+  	<meta name="theme-color" content="#222"/>
+  	<link rel="manifest" href="https://hailtothevictors.github.io/andromeda/newmanifest.json">
+    <title>Andromeda</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="playlist.css" />
+    <link rel="stylesheet" href="search.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet">
+    <script src="songs.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div id="footer">
+      <div id="scrubCont">
+        <div class="scrubTime">0:00</div>
+        <div class="scrubParent">
+          <input type="range" num="0" max="100" step="0.01" oninput="scrubSong(this.value)" id="scrubBar" />
+        </div>
+        <div class="scrubTime">0:00</div>
+      </div>
+      <div id="controlCont">
+        <div id="controlParent">
+          <svg class="controlIcon skipInTrack" onclick="skipInTrack(-10)" style="margin-right:5px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12.5,3C17.15,3 21.08,6.03 22.47,10.22L20.1,11C19.05,7.81 16.04,5.5 12.5,5.5C10.54,5.5 8.77,6.22 7.38,7.38L10,10H3V3L5.6,5.6C7.45,4 9.85,3 12.5,3M10,12V22H8V14H6V12H10M18,14V20C18,21.11 17.11,22 16,22H14A2,2 0 0,1 12,20V14A2,2 0 0,1 14,12H16C17.11,12 18,12.9 18,14M14,14V20H16V14H14Z" />
+          </svg>
+          <svg class="controlIcon navTrack" onclick="backAction()" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M6,18V6H8V18H6M9.5,12L18,6V18L9.5,12Z" />
+          </svg>
+          <svg class="controlIcon" id="playPause" onclick="playPause()" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+          </svg>
+          <svg class="controlIcon navTrack" onclick="nextSong()" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M16,18H18V6H16M6,18L14.5,12L6,6V18Z" />
+          </svg>
+          <svg class="controlIcon skipInTrack" onclick="skipInTrack(10)" style="margin-left:5px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M10,12V22H8V14H6V12H10M18,14V20C18,21.11 17.11,22 16,22H14A2,2 0 0,1 12,20V14A2,2 0 0,1 14,12H16C17.11,12 18,12.9 18,14M14,14V20H16V14H14M11.5,3C14.15,3 16.55,4 18.4,5.6L21,3V10H14L16.62,7.38C15.23,6.22 13.46,5.5 11.5,5.5C7.96,5.5 4.95,7.81 3.9,11L1.53,10.22C2.92,6.03 6.85,3 11.5,3Z" />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div id="sideBar">
+      <img id="sideLogo" src="favicon.png" />
+      <div class="divider"></div>
+      <button class="sideNav" onclick="goTo(0)">Home</button>
+      <button class="sideNav" onclick="goTo(1)">Search</button>
+      <button class="sideNav" onclick="goTo(2)" style="border-left-color:currentColor">Playlists</button>
+      <button class="sideNav" onclick="goTo(3)">Settings</button>
+    </div>
+    <svg id="retract" onclick="toggleSidebar(this)" viewBox="0 0 24 24">
+      <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+    </svg>
+    <div id="container">
+      <div class="content" id="home">
+        <div class="flexConv">
+          <div id="playingCont">
+            <div id="coversCont">
+              <img class="flankingAlbums" src="https://hailtothevictors.github.io/andromeda/albums/placeholder.png" />
+              <img class="currentAlbum" src="favicon.png" />
+              <img class="flankingAlbums" src="https://hailtothevictors.github.io/andromeda/albums/placeholder.png" />
+            </div>
+            <div id="titleCont">
+              <div id="songTitle">Andromeda</div>
+              <div id="songDesc">Band | Album (Year)</div>
+            </div>
+          </div>
+          <div id="halfDivider"></div>
+          <div id="queueCont">
+            <div>
+              <div class="queueRow">
+                <img class="queueCover" src="favicon.png" />
+                <div class="queueTont">
+                  <div class="queueTitle"></div>
+                  <div class="queueArtist"></div>
+                </div>
+              </div>
+              <div class="queueDivider"></div>
+              <div class="queueRow">
+                <img class="queueCover" src="favicon.png" />
+                <div class="queueTont">
+                  <div class="queueTitle"></div>
+                  <div class="queueArtist"></div>
+                </div>
+              </div>
+              <div class="queueDivider"></div>
+              <div class="queueRow">
+                <img class="queueCover" src="favicon.png" />
+                <div class="queueTont">
+                  <div class="queueTitle"></div>
+                  <div class="queueArtist"></div>
+                </div>
+              </div>
+              <div class="queueDivider"></div>
+              <div class="queueRow">
+                <img class="queueCover" src="favicon.png" />
+                <div class="queueTont">
+                  <div class="queueTitle"></div>
+                  <div class="queueArtist"></div>
+                </div>
+              </div>
+              <div class="queueDivider"></div>
+              <div class="queueRow">
+                <img class="queueCover" src="favicon.png" />
+                <div class="queueTont">
+                  <div class="queueTitle"></div>
+                  <div class="queueArtist"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content" id="search">
+        <input type="text" id="searchBar" oninput="search()" placeholder="Search" />
+        <div id="searchOuputCont"></div>
+      </div>
+      <div class="content" id="playlists" style="display:block">
+        <div class="contentHeader">Playlists</div>
+        <div class="contentParent">
+          <img onclick="goTo(4);goToPlaylist(this);" data-qual="0" data-name="M&uacute;sica" src="playlists/musica.png"/>
+          <img onclick="goTo(4);goToPlaylist(this);" data-qual="3" data-name="M&uacute;sica" src="playlists/top30.png"/>
+        </div>
+        <div class="contentHeader">Artists</div>
+        <div class="contentParent">
+          <img onclick="goTo(4);goToPlaylist(this);" data-qual="1" data-name="Imagine Dragons" src="playlists/imaginedragons.png"/>
+          <img onclick="goTo(4);goToPlaylist(this);" data-qual="2" data-name="Avicii" src="playlists/avicii.png"/>
+        </div>
+      </div>
+      <div class="content" id="settings">
+        Settings
+      </div>
+      <div class="content" id="playlists">
+        <div id="playlistHeader">
+          <img id="playlistCover" />
+          <div id="playlistTont">
+            <div id="playlistName"></div>
+            <div id="playlistInfo"></div>
+            <div id="playlistActionCont">
+              <svg onclick="playPlaylist()" viewBox="0 0 24 24">
+                <path d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+              </svg>
+              <svg onclick="shufflePlaylist()" viewBox="0 0 24 24">
+                <path d="M14.83,13.41L13.42,14.82L16.55,17.95L14.5,20H20V14.5L17.96,16.54L14.83,13.41M14.5,4L16.54,6.04L4,18.59L5.41,20L17.96,7.46L20,9.5V4M10.59,9.17L5.41,4L4,5.41L9.17,10.58L10.59,9.17Z" />
+              </svg>
+              <svg onclick="goTo(2)" viewBox="0 0 24 24">
+                <path d="M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div id="playlistDivider"></div>
+        <div id="playlistCont">
 
-<body onload="document.getElementById('version').innerHTML = version; randomSong()">
-
-<div style="display:none">
-	<div class="gcse-search"></div>
-	<div id="video-placeholder"></div>
-</div>
-
-<div id="forehead">
-	<img id="logo" src="logo2_c.png">
-	<img id="favLogo" src="favicon_c.png">
-</div>
-
-<div id="content">
-	<div id="albumCont">
-		<div id="album"></div>
-	</div>
-	<div id="infoCont">
-		<div class="descPage" id="pageHome" style="display:block">
-			<div class="padding1"></div>
-			<div id="nameCont">Loading...</div>
-			<div id="descCont">Loading...</div>
-			<div style="width:100%;height:10px;"></div>
-			<div id="controlCont">
-				<div class="controlSeg">
-					<div class="control" title="Rewind" onclick="rewind()">
-						<svg class="controlIcon" viewBox="0 0 24 24"><path d="M11.5,12L20,18V6M11,18V6L2.5,12L11,18Z"/></svg>
-					</div>
-					<div class="control" title="Play/Pause" id="pp" onclick="playPause()">
-						<svg class="controlIcon" id="play" viewBox="0 0 24 24"><path  d="M8,5.14V19.14L19,12.14L8,5.14Z"/></svg>
-						<svg class="controlIcon" style="display:none" id="pause" viewBox="0 0 24 24"><path  d="M14,19H18V5H14M6,19H10V5H6V19Z"/></svg>
-					</div>
-					<div class="control" title="Next Song" onclick="randomSong()">
-						<svg class="controlIcon" viewBox="0 0 24 24"><path d="M13,6V18L21.5,12M4,18L12.5,12L4,6V18Z"/></svg>
-					</div>
-					<div class="control" title="Restart Song" onclick="restartSong()">
-						<svg class="controlIcon" viewBox="0 0 24 24"><path d="M12,5V1L7,6L12,11V7A6,6 0 0,1 18,13A6,6 0 0,1 12,19A6,6 0 0,1 6,13H4A8,8 0 0,0 12,21A8,8 0 0,0 20,13A8,8 0 0,0 12,5Z"/></svg>
-					</div>
-				</div>
-				<div class="controlSeg">
-					<input type="text" id="search" name="song" placeholder="Search..."/>
-					<div class="control" title="Playlist" onclick="songSelect()">
-						<svg class="controlIcon" viewBox="0 0 24 24"><path d="M15,6H3V8H15V6M15,10H3V12H15V10M3,16H11V14H3V16M17,6V14.18C16.69,14.07 16.35,14 16,14A3,3 0 0,0 13,17A3,3 0 0,0 16,20A3,3 0 0,0 19,17V8H22V6H17Z"/></svg>
-					</div>
-					<div class="control" title="Change Playlist" onclick="listSelect()">
-						<svg class="controlIcon" viewBox="0 0 24 24"><path d="M12,11A1,1 0 0,0 11,12A1,1 0 0,0 12,13A1,1 0 0,0 13,12A1,1 0 0,0 12,11M12,16.5C9.5,16.5 7.5,14.5 7.5,12C7.5,9.5 9.5,7.5 12,7.5C14.5,7.5 16.5,9.5 16.5,12C16.5,14.5 14.5,16.5 12,16.5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>
-					</div>
-					<div class="control" title="Light/Dark Mode" onclick="displayMode()">
-						<svg class="controlIcon" viewBox="0 0 24 24"><path d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z"/></svg>
-					</div>
-					<div class="control" title="Search" onclick="toggleSearch()">
-						<svg class="controlIcon" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/></svg>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="descPage" id="songList"><div class="descRel">
-			<div class="closePage control" onclick="pageClose(this);">
-				<svg class="controlIcon" viewBox="0 0 24 24"><path fill="#eee" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>
-			</div>
-			<div class="songRow" onclick="chooseSong(0)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Bad_Liar.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Bad Liar</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(6)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/believer.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Believer</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(51)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/better.png">
-				<div class="chooseTont">
-					<div class="chooseName">Better Than Ever</div>
-					<div class="chooseArtist">Flight Facilites ft. Aloe Blacc</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(30)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Night_Visions.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Bleeding Out</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(1)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Blossom.jpeg">
-				<div class="chooseTont">
-					<div class="chooseName">Blossom</div>
-					<div class="chooseArtist">Milky Chance</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(2)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Bones.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Bones</div>
-					<div class="chooseArtist">Galantis ft. OneRepublic</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(32)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Origins.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Boomerang</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(31)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Born_To_Be_Yours.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Born to Be Yours</div>
-					<div class="chooseArtist">Kygo & Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(53)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/kind.png">
-				<div class="chooseTont">
-					<div class="chooseName">Bust This Town</div>
-					<div class="chooseArtist">Stereophonics</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(4)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Cocoon.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Cocoon</div>
-					<div class="chooseArtist">Milky Chance</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(37)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Origins.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Cool Out</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(5)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Night_Visions.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Demons</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(34)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/More_Than_You_Know.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Dreamer</div>
-					<div class="chooseArtist">Alwell /\ Ingrosso</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(28)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Blossom.jpeg">
-				<div class="chooseTont">
-					<div class="chooseName">Ego</div>
-					<div class="chooseArtist">Milky Chance</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(35)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/tim.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Fades Away</div>
-					<div class="chooseArtist">Avicii ft. Noonie Bao</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(7)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Sadnecessary.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Flashed Junk Mind</div>
-					<div class="chooseArtist">Milky Chance</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(36)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/wakingupblue.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Good Life</div>
-					<div class="chooseArtist">OneRepublic</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(50)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/happier.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Happier</div>
-					<div class="chooseArtist">Marshmello ft. Bastille</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(14)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/tim.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Heart Upon My Sleeve</div>
-					<div class="chooseArtist">Avicii ft. Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(8)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Hey_Brother.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Hey Brother</div>
-					<div class="chooseArtist">Avicii</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(9)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/The_Lumineers.jpeg">
-				<div class="chooseTont">
-					<div class="chooseName">Ho Hey</div>
-					<div class="chooseArtist">The Lumineers</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(27)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/ibetmylife.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">I Bet My Life</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(10)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/I_Need_a_Dollar.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">I Need a Dollar</div>
-					<div class="chooseArtist">Aloe Blacc</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(38)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Bad_Blood.jpeg">
-				<div class="chooseTont">
-					<div class="chooseName">Icarus</div>
-					<div class="chooseArtist">Bastille</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(15)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/smokemirrors.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">I'm So Sorry</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(48)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/itstime.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">It's Time</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(52)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/itstime.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">It's Time (Acoustic)</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(33)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/levelsremix.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Levels</div>
-					<div class="chooseArtist">Avicii</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(3)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/avici.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Lonely Together</div>
-					<div class="chooseArtist">Avicii ft. Rita Ora</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(11)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Machine.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Machine</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(39)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/More_Than_You_Know.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">More Than You Know</div>
-					<div class="chooseArtist">Axwell /\ Ingrosso</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(12)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Natural.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Natural</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(40)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/One_Foot.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">One Foot</div>
-					<div class="chooseArtist">Walk the Moon</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(13)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Origins.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Only</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(16)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Pompeii.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Pompeii</div>
-					<div class="chooseArtist">Bastille</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(29)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/smokemirrors.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Polaroid</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(17)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Renegades.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Renegades</div>
-					<div class="chooseArtist">X Ambassadors</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(45)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/evolve.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Rise Up</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(41)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Roots.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Roots</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(42)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Shots_Broiler.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Shots</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(43)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Shots_Broiler.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Shots (Broiler Remix)</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(19)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Stolen_Dance.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Stolen Dance</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(20)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Stolen_Dance_Flic_Flac.jfif">
-				<div class="chooseTont">
-					<div class="chooseName">Stolen Dance (Flic Flac Edit)</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(21)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/The_Lumineers.jpeg">
-				<div class="chooseTont">
-					<div class="chooseName">Stubborn Love</div>
-					<div class="chooseArtist">The Lumineers</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(22)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/The_Nights.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">The Nights</div>
-					<div class="chooseArtist">Avicii</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(46)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/thunder.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Thunder</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(44)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Two_High.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Two High</div>
-					<div class="chooseArtist">Moon Taxi</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(24)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Waiting_for_Love.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Waiting For Love</div>
-					<div class="chooseArtist">Avicii</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(54)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/wakemeupalbum.png">
-				<div class="chooseTont">
-					<div class="chooseName">Wake Me Up</div>
-					<div class="chooseArtist">Avicii</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(47)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/warriors.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Warriors</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(49)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/whateverittakes.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Whatever It Takes</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(23)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Origins.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">West Coast</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(18)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/smokemirrors.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Who We Are</div>
-					<div class="chooseArtist">Imagine Dragons</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="chooseSong(25)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/Men_Amongst_Mountains.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Wish I Knew You</div>
-					<div class="chooseArtist">The Revivalists</div>
-				</div>
-			</div>
-			<div id="version"></div>
-		</div></div>
-		<div class="descPage" id="playlists"><div class="descRel">
-			<div class="closePage control" onclick="pageClose(this);">
-				<svg class="controlIcon" viewBox="0 0 24 24"><path fill="#eee" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>
-			</div>
-			<div class="songRow" onclick="changePlaylist(0)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/q_2.png">
-				<div class="chooseTont">
-					<div class="chooseName">Quinn</div>
-				</div>
-			</div>
-			<div class="songRow" onclick="changePlaylist(1)">
-				<img class="albumChoose" src="https://hailtothevictors.github.io/andromeda/albums/elli.jpg">
-				<div class="chooseTont">
-					<div class="chooseName">Elli</div>
-				</div>
-			</div>
-		</div></div>
-	</div>
-</div>
-
-<div id="bottom">
-	<div class="songTime">0:00</div>
-	<div id="rangeCont">
-		<input type="range" min="0" max="100" value="50" step="0.05" id="range" oninput="adjustTime()">
-	</div>
-	<div class="songTime">0:00</div>
-</div>
-
-<audio style="display:none" id="audio" autoplay>
-	<source src="https://hailtothevictors.github.io/andromeda/AndromedaX/bustthistown.mp3" type="audio/mpeg">
-</audio>
-
-</body>
+        </div>
+      </div>
+    </div>
+    <div id="dock">
+      <button onclick="goTo(0)" class="dockButton">
+        <svg viewBox="0 0 24 24">
+          <path d="M12,3L20,9V21H15V14H9V21H4V9L12,3Z" />
+        </svg>
+      </button>
+      <button onclick="goTo(1)" class="dockButton">
+        <svg viewBox="0 0 24 24">
+          <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+        </svg>
+      </button>
+      <button onclick="goTo(2)" class="dockButton">
+        <svg viewBox="0 0 24 24">
+          <path d="M15,6H3V8H15V6M15,10H3V12H15V10M3,16H11V14H3V16M17,6V14.18C16.69,14.07 16.35,14 16,14A3,3 0 0,0 13,17A3,3 0 0,0 16,20A3,3 0 0,0 19,17V8H22V6H17Z" />
+        </svg>
+      </button>
+      <button onclick="goTo(3)" class="dockButton">
+        <svg viewBox="0 0 24 24">
+          <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" />
+        </svg>
+      </button>
+    </div>
+    <audio style="display:none" id="audio" oncanplaythrough="audioReady()">
+      <source src="https://hailtothevictors.github.io/andromeda/AndromedaX/bustthistown.mp3" type="audio/mpeg">
+    </audio>
+  </body>
 </html>

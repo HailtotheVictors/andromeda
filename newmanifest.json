@@ -4,6 +4,7 @@
   "theme_color": "#333",
   "background_color": "#cccccc",
   "display": "standalone",
+  "orientation": "portrait",
   "Scope": "/andromeda",
   "start_url": "/andromeda/index.html",
   "icons": [

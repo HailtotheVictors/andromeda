@@ -11,6 +11,9 @@ body {
   --magenta-hover: #ac3498;
   --grey: #777;
 }
+button:focus {
+  outline: none;
+}
 .flexConv {
   height: 100%;
   width: 100%;

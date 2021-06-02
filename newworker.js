@@ -1,4 +1,4 @@
-const PRECACHE = 'andromedav3-cache-v2';
+const PRECACHE = 'andromedav3-cache-v3';
 const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.
@@ -49,6 +49,7 @@ self.addEventListener('fetch', event => {
 
         return caches.open(RUNTIME).then(cache => {
           return fetch(event.request).then(response => {
+            console.log(cache);
             // Put a copy of the response in the runtime cache.
             return cache.put(event.request, response.clone()).then(() => {
               return response;
